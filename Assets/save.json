@@ -1,4 +1,10 @@
 {
-    "name": "fssss",
-    "password": "vvvvvv"
+    "name": "dfgdsg",
+    "password": "sdgfsdsd",
+    "resources": [
+        {
+            "name": "JAR",
+            "count": 19
+        }
+    ]
 }
