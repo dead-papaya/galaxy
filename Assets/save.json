@@ -1,7 +1,11 @@
 {
-    "name": "dfgdsg",
-    "password": "sdgfsdsd",
+    "name": "adasdasdvbxzva2w",
+    "password": "1234",
     "resources": [
+        {
+            "name": "JAR",
+            "count": 19
+        },
         {
             "name": "JAR",
             "count": 19
