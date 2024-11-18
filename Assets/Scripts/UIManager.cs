@@ -18,26 +18,28 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) // ПКМ
+        if (BearManager.Instance.selectedBear != null)
         {
-            // Позиция мыши в экранных координатах
-            Vector3 mousePos = Input.mousePosition;
+            if (Input.GetMouseButtonDown(1)) // ПКМ
+            {
+                // Позиция мыши в экранных координатах
+                Vector3 mousePos = Input.mousePosition;
 
-            // Устанавливаем позицию меню относительно мыши
-            Vector3 adjustedPos = mousePos;
-            adjustedPos.x -= menuRectTransform.rect.width;  // Сместить влево
-            adjustedPos.y += menuRectTransform.rect.height; // Сместить вверх
+                // Устанавливаем позицию меню справа снизу
+                Vector3 adjustedPos = mousePos;
+                adjustedPos.x += 75; // Смещение вправо (добавьте отступ, если нужно)
+                adjustedPos.y -= 50; // Смещение вниз
 
-            // Ограничить позицию в пределах экрана
-            adjustedPos = ClampToScreen(adjustedPos);
+                // Ограничиваем позицию, чтобы меню оставалось в пределах экрана
+                adjustedPos = ClampToScreen(adjustedPos);
 
-            // Устанавливаем позицию меню
-            contextMenu.transform.position = adjustedPos;
+                // Устанавливаем позицию меню
+                contextMenu.transform.position = adjustedPos;
 
-            // Показываем меню
-            contextMenu.SetActive(true);
+                // Показываем меню
+                contextMenu.SetActive(true);
+            }
         }
-
     }
     
     /// <summary>
