@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class BearSelector : MonoBehaviour
 {
-    void OnMouseDown()
+    private void OnMouseDown()
     {
-        print("OnMouseDown");
         BearController bear = GetComponent<BearController>();
         if (bear != null)
         {
@@ -16,4 +15,5 @@ public class BearSelector : MonoBehaviour
             Debug.LogWarning("BearController not found on the object!");
         }
     }
+    
 }
