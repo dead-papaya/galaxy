@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_1
+      name: tree_2
       rect:
         serializedVersion: 2
         x: 180
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_2
+      name: tree_3
       rect:
         serializedVersion: 2
         x: 365
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_4
+      name: log_2
       rect:
         serializedVersion: 2
         x: 144
@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_5
+      name: stump_1
       rect:
         serializedVersion: 2
         x: 254
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_6
+      name: stump_2
       rect:
         serializedVersion: 2
         x: 360
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_7
+      name: tree_4
       rect:
         serializedVersion: 2
         x: 17
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_8
+      name: tree_5
       rect:
         serializedVersion: 2
         x: 132
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_9
+      name: tree_not_berries
       rect:
         serializedVersion: 2
         x: 241
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_10
+      name: berries_tree
       rect:
         serializedVersion: 2
         x: 297
@@ -380,10 +380,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_11
+      name: berries_tree_2
       rect:
         serializedVersion: 2
-        x: 354
+        x: 352
         y: 472
         width: 48
         height: 68
@@ -401,7 +401,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_12
+      name: SmallTree_no_berries
       rect:
         serializedVersion: 2
         x: 237
@@ -422,7 +422,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_13
+      name: Smalltree_berries_1
       rect:
         serializedVersion: 2
         x: 280
@@ -443,7 +443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_14
+      name: Smalltree_berries_2
       rect:
         serializedVersion: 2
         x: 325
@@ -632,7 +632,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_23
+      name: GreyStone_1
       rect:
         serializedVersion: 2
         x: 250
@@ -653,7 +653,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_24
+      name: GreyStone_2
       rect:
         serializedVersion: 2
         x: 293
@@ -674,7 +674,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_25
+      name: cobblestone_1
       rect:
         serializedVersion: 2
         x: 343
@@ -821,7 +821,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_32
+      name: BrownStone_1
       rect:
         serializedVersion: 2
         x: 251
@@ -842,7 +842,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_33
+      name: BrownStone_2
       rect:
         serializedVersion: 2
         x: 296
@@ -863,7 +863,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_34
+      name: cobblestone_2
       rect:
         serializedVersion: 2
         x: 343
@@ -989,7 +989,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_40
+      name: BreakStone1
       rect:
         serializedVersion: 2
         x: 345
@@ -1073,11 +1073,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_44
+      name: GreySmallStone
       rect:
         serializedVersion: 2
         x: 252
-        y: 260
+        y: 262
         width: 31
         height: 23
       alignment: 0
@@ -1094,7 +1094,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_45
+      name: GreySmallStone_2
       rect:
         serializedVersion: 2
         x: 297
@@ -1115,7 +1115,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_46
+      name: BreakStone2
       rect:
         serializedVersion: 2
         x: 345
@@ -1472,7 +1472,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_63
+      name: BrownStoneSmall
       rect:
         serializedVersion: 2
         x: 252
@@ -1493,7 +1493,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_64
+      name: BrownStoneSmall2
       rect:
         serializedVersion: 2
         x: 297
@@ -1514,7 +1514,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_65
+      name: BreakStoneSmall1
       rect:
         serializedVersion: 2
         x: 350
@@ -1619,7 +1619,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_70
+      name: BreakStoneSmall2
       rect:
         serializedVersion: 2
         x: 349
@@ -2637,8 +2637,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      assets_1: 441812617
-      assets_10: -779644694
+      BreakStone1: -1882872875
+      BreakStone2: -1704835093
+      BreakStoneSmall1: 1980158560
+      BreakStoneSmall2: -1109028016
+      BrownStoneSmall: -982645007
+      BrownStoneSmall2: -210231222
+      BrownStone_1: -537271189
+      BrownStone_2: 1602284495
+      GreySmallStone: 1298892016
+      GreySmallStone_2: -342310499
+      GreyStone_1: 597825310
+      GreyStone_2: 520003343
+      SmallTree_no_berries: 1130273647
+      Smalltree_berries_1: -932678542
+      Smalltree_berries_2: 958407895
       assets_100: 571184
       assets_101: -55131052
       assets_102: 170412672
@@ -2649,7 +2662,6 @@ TextureImporter:
       assets_107: -1249497044
       assets_108: -290729196
       assets_109: 1598375606
-      assets_11: -205907624
       assets_110: 1966358887
       assets_111: -1999808046
       assets_112: -2072377817
@@ -2658,47 +2670,31 @@ TextureImporter:
       assets_115: -358021774
       assets_116: 1918158484
       assets_117: 1769053987
-      assets_12: 1130273647
-      assets_13: -932678542
-      assets_14: 958407895
       assets_15: 173938814
       assets_16: -1327929831
       assets_17: 850273764
       assets_18: -1165034503
       assets_19: 357642755
-      assets_2: -502362501
       assets_20: -1870663692
       assets_21: -1784572640
       assets_22: 780172674
-      assets_23: 597825310
-      assets_24: 520003343
-      assets_25: -1910895060
       assets_26: -2078701711
       assets_27: 1994042277
       assets_28: 1825230768
       assets_29: 386078902
       assets_30: 1258270342
       assets_31: 1921690874
-      assets_32: -537271189
-      assets_33: 1602284495
-      assets_34: 1436384976
       assets_35: -1441457283
       assets_36: 323038639
       assets_37: 1282769053
       assets_38: 323252220
       assets_39: 1318922554
-      assets_4: 1182312302
-      assets_40: -1882872875
       assets_41: 554757075
       assets_42: -455839950
       assets_43: -404960147
-      assets_44: 1298892016
-      assets_45: -342310499
-      assets_46: -1704835093
       assets_47: 89689302
       assets_48: -1243442552
       assets_49: -1025192036
-      assets_5: 895790682
       assets_50: -2019862081
       assets_51: -1239938767
       assets_52: 473190885
@@ -2709,19 +2705,13 @@ TextureImporter:
       assets_57: 1813779282
       assets_58: 1564697678
       assets_59: 837760166
-      assets_6: 1318548452
       assets_60: -1433591855
       assets_61: 59266151
       assets_62: 859569328
-      assets_63: -982645007
-      assets_64: -210231222
-      assets_65: 1980158560
       assets_66: -210213160
       assets_67: 291496571
       assets_68: 1045060999
       assets_69: 161857998
-      assets_7: -1522093187
-      assets_70: -1109028016
       assets_71: 1604392538
       assets_72: -1723667839
       assets_73: -1700356531
@@ -2731,7 +2721,6 @@ TextureImporter:
       assets_77: 894305938
       assets_78: 177121690
       assets_79: 1116505672
-      assets_8: -584473732
       assets_80: -1218651049
       assets_81: 273174345
       assets_82: -1712066302
@@ -2742,7 +2731,6 @@ TextureImporter:
       assets_87: -20030538
       assets_88: 352858285
       assets_89: -837399391
-      assets_9: 1681495876
       assets_90: -2063768381
       assets_91: 482766103
       assets_92: 931215492
@@ -2753,8 +2741,20 @@ TextureImporter:
       assets_97: -596650300
       assets_98: 1948205261
       assets_99: 1546378828
+      berries_tree: -779644694
+      berries_tree_2: -205907624
+      cobblestone_1: -1910895060
+      cobblestone_2: 1436384976
       log_1: -261609971
+      log_2: 1182312302
+      stump_1: 895790682
+      stump_2: 1318548452
       tree_1: 1422556422
+      tree_2: 441812617
+      tree_3: -502362501
+      tree_4: -1522093187
+      tree_5: -584473732
+      tree_not_berries: 1681495876
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
