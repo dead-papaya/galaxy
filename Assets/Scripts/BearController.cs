@@ -17,12 +17,14 @@ public class BearController : MonoBehaviour
     public void Select()
     {
         Debug.Log($"{gameObject.name} selected.");
+        GetComponent<SpriteRenderer>().color = Color.green;
         // Добавьте визуальные эффекты или выделение
     }
 
     public void Deselect()
     {
         Debug.Log($"{gameObject.name} deselected.");
+        GetComponent<SpriteRenderer>().color = Color.white;
         // Уберите визуальные эффекты
     }
 
