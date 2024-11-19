@@ -299,12 +299,12 @@ TextureImporter:
       name: tree_4
       rect:
         serializedVersion: 2
-        x: 17
-        y: 391
+        x: 16
+        y: 394
         width: 97
         height: 146
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4914648, y: 0.122934}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,27 +312,6 @@ TextureImporter:
       bones: []
       spriteID: acb28bfedd1e62a4db2b5fa5b2ff27ab
       internalID: -1522093187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tree_5
-      rect:
-        serializedVersion: 2
-        x: 132
-        y: 396
-        width: 85
-        height: 113
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84c2c86ff44f2ff40a3fdc8432113a4a
-      internalID: -584473732
       vertices: []
       indices: 
       edges: []
@@ -2627,73 +2606,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: assets_0
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 445
-        width: 85
-        height: 63
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23e0f18aed527aa4ea1e5f4c9759908c
-      internalID: -1885351269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assets_1
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 397
-        width: 85
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 1, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb113ace3110f434eb491748f29d7732
-      internalID: -1593398810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: assets_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 397
-        width: 92
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 3, y: 2, z: 6, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdf61d8593223504cafa2fe1173d6349
-      internalID: -1143896856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: assets_3
       rect:
         serializedVersion: 2
-        x: 369
+        x: 374
         y: 212
         width: 86
         height: 79
@@ -2866,6 +2782,7 @@ TextureImporter:
       assets_67: 291496571
       assets_68: 1045060999
       assets_69: 161857998
+      assets_7: 897869377
       assets_71: 1604392538
       assets_72: -1723667839
       assets_73: -1700356531
