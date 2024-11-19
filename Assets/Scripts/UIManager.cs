@@ -1,49 +1,83 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     private Camera mainCamera;
-    [SerializeField] private GameObject contextMenu;
     [SerializeField] private RectTransform canvasRectTransform;  // Ссылка на RectTransform Canvas
-    [SerializeField] private RectTransform menuRectTransform;  
+    [SerializeField] private RectTransform menuRectTransform; 
+    
+    public GameObject menuPanel; // Панель контекстного меню
+    public Button buttonPrefab;  // Префаб кнопки
+
+    private void GenerateMenu(Vector3 position, List<Command> commands)
+    {
+        // Очищаем старые кнопки
+        foreach (Transform child in menuPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        // Создаём кнопки для каждой команды
+        foreach (Command command in commands)
+        {
+            Button newButton = Instantiate(buttonPrefab, menuPanel.transform);
+            newButton.GetComponentInChildren<TextMeshProUGUI>().text = command.commandName;
+
+            // Привязываем действие к кнопке
+            newButton.onClick.AddListener(delegate
+            {
+                command.Execute(BearManager.Instance.GetSelectedBear());
+                CloseMenu();
+            });
+        }
+
+        // Показываем меню в позиции курсора
+        menuPanel.transform.position = ClampToScreen(position);
+        menuPanel.SetActive(true);
+    }
+
+    public void CloseMenu()
+    {
+        menuPanel.SetActive(false);
+    }
 
     private void Start()
     {
         mainCamera = Camera.main;
+        menuPanel.SetActive(false); // Прячем меню по умолчанию
     }
 
     void Update()
     {
-        if (BearManager.Instance.selectedBear != null)
+        if (BearManager.Instance.GetSelectedBear() != null)
         {
             if (Input.GetMouseButtonDown(1)) // ПКМ
             {
-                // Позиция мыши в экранных координатах
-                Vector3 mousePos = Input.mousePosition;
+                Vector3 mousePosition = Input.mousePosition;
 
-                // Устанавливаем позицию меню справа снизу
-                Vector3 adjustedPos = mousePos;
-                adjustedPos.x += 75; // Смещение вправо (добавьте отступ, если нужно)
-                adjustedPos.y -= 50; // Смещение вниз
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
 
-                // Ограничиваем позицию, чтобы меню оставалось в пределах экрана
-                adjustedPos = ClampToScreen(adjustedPos);
-
-                // Устанавливаем позицию меню
-                contextMenu.transform.position = adjustedPos;
-
-                // Показываем меню
-                contextMenu.SetActive(true);
+                GameObject clickedObject = hit.collider != null ? hit.collider.gameObject : null;
+                CommandList commandList;
+                if (clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList))
+                {
+                    GenerateMenu(ClampToScreen(mousePosition), commandList.Commands);
+                }
+                else
+                {
+                    GenerateMenu(ClampToScreen(mousePosition), new List<Command>(){new MoveCommand(mainCamera.ScreenToWorldPoint(mousePosition))});
+                }
+                
             }
         }
     }
     
     /// <summary>
-    /// Ограничивает позицию меню в пределах экрана
+    /// Ограничивает позицию меню в пределах экрана и размещает справа снизу от мыши.
     /// </summary>
     private Vector3 ClampToScreen(Vector3 position)
     {
@@ -51,8 +85,12 @@ public class UIManager : MonoBehaviour
         float screenHeight = Screen.height;
 
         // Учитываем размеры меню
-        float menuWidth = menuRectTransform.rect.width/2f;
-        float menuHeight = menuRectTransform.rect.height/2f;
+        float menuWidth = menuRectTransform.rect.width;
+        float menuHeight = menuRectTransform.rect.height;
+
+        // Смещение: размещение справа снизу от мыши
+        position.x += menuWidth / 4f;  // Сдвигаем вправо
+        position.y -= menuHeight / 4f; // Сдвигаем вниз
 
         // Ограничение по горизонтали
         if (position.x < 0)
@@ -61,11 +99,12 @@ public class UIManager : MonoBehaviour
             position.x = screenWidth - menuWidth;
 
         // Ограничение по вертикали
-        if (position.y < menuHeight)
-            position.y = menuHeight;
-        if (position.y > screenHeight)
-            position.y = screenHeight;
+        if (position.y < 0)
+            position.y = 0;
+        if (position.y + menuHeight > screenHeight)
+            position.y = screenHeight - menuHeight;
 
         return position;
     }
+
 }

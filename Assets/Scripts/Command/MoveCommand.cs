@@ -7,6 +7,7 @@ public class MoveCommand : Command
     public MoveCommand(Vector3 target)
     {
         this.target = target;
+        commandName = "Идти сюда";
     }
 
     public override void Execute(BearController bear)
