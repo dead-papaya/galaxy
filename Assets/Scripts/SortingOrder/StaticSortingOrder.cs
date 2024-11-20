@@ -7,7 +7,6 @@ public class StaticSortingOrder : SortingOrder
 {
     private void Start()
     {
-        print("Static Sort: " + gameObject.name);
         Sort();
     }
 }

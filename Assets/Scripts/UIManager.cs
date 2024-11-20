@@ -7,12 +7,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    
+    public static UIManager Instance { get; private set; }
+    
     private Camera mainCamera;
     [SerializeField] private RectTransform canvasRectTransform;  // Ссылка на RectTransform Canvas
     [SerializeField] private RectTransform menuRectTransform; 
     
     public GameObject menuPanel; // Панель контекстного меню
     public Button buttonPrefab;  // Префаб кнопки
+
+    public TextMeshProUGUI treeResourceCountText;
+    public TextMeshProUGUI currentStateTMPro;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     private void GenerateMenu(Vector3 position, List<Command> commands)
     {
@@ -21,6 +35,13 @@ public class UIManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        
+        if (commands == null || commands.Count == 0)
+        {
+            Debug.LogError("Список команд пуст или не передан в GenerateMenu!");
+            return;
+        }
+        
         // Создаём кнопки для каждой команды
         foreach (Command command in commands)
         {
@@ -30,7 +51,8 @@ public class UIManager : MonoBehaviour
             // Привязываем действие к кнопке
             newButton.onClick.AddListener(delegate
             {
-                command.Execute(BearManager.Instance.GetSelectedBear());
+                command.bear = BearManager.Instance.GetSelectedBear();
+                BearManager.Instance.GetSelectedBear().AddCommand(command);
                 CloseMenu();
             });
         }
@@ -65,13 +87,13 @@ public class UIManager : MonoBehaviour
                 CommandList commandList;
                 if (clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList))
                 {
+                    print("clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList)");
                     GenerateMenu(ClampToScreen(mousePosition), commandList.Commands);
                 }
                 else
                 {
-                    GenerateMenu(ClampToScreen(mousePosition), new List<Command>(){new MoveCommand(mainCamera.ScreenToWorldPoint(mousePosition))});
+                    GenerateMenu(ClampToScreen(mousePosition), new List<Command>(){new MoveCommand(BearManager.Instance.GetSelectedBear(),mainCamera.ScreenToWorldPoint(mousePosition))});
                 }
-                
             }
         }
     }
