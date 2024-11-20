@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI treeResourceCountText;
     public TextMeshProUGUI currentStateTMPro;
+    public TextMeshProUGUI currentCommandListLengthTMPro;
 
     private void Awake()
     {
@@ -56,6 +57,8 @@ public class UIManager : MonoBehaviour
                 CloseMenu();
             });
         }
+        
+        
 
         // Показываем меню в позиции курсора
         menuPanel.transform.position = ClampToScreen(position);

@@ -3,38 +3,49 @@ using UnityEngine;
 
 public class CommandQueue
 {
-    private Queue<Command> commandQueue = new Queue<Command>();
+    public Queue<Command> commandQueue = new Queue<Command>();
     private bool isExecuting = false;
+    public Command currentCommand = null;
 
-    public void EnqueueCommand(Command command)
+    public void AddCommand(Command command)
     {
+        // Если текущая команда существует, отменяем её
+        if (currentCommand != null)
+        {
+            Debug.Log("Queue > 0: Cancelling current command.");
+            currentCommand.Cancel();  // Отменяем текущую команду
+            currentCommand = null;  // Обнуляем текущую команду
+        }
+
+        // Добавляем команду в очередь
         commandQueue.Enqueue(command);
+        
+        // Если сейчас ничего не выполняется, начинаем выполнение очереди
         TryExecuteNext();
     }
 
     private async void TryExecuteNext()
     {
-        Debug.Log("Try execute next command");
         if (isExecuting || commandQueue.Count == 0)
         {
-            Debug.Log($"isExecuting {isExecuting} , commandQueue.Count {commandQueue.Count} => RETURN");
+            Debug.Log($"isExecuting {isExecuting}, commandQueue.Count {commandQueue.Count} => RETURN");
             return;
         }
 
-        isExecuting = true;
+        // Берём команду из очереди
         Command command = commandQueue.Dequeue();
+        currentCommand = command;  // Устанавливаем текущую команду
+
+        isExecuting = true;
+
+        // Выполнение команды асинхронно
         await command.ExecuteAsync();
-        isExecuting = false;
 
-        // Рекурсивно вызываем, если в очереди остались команды
+        // После завершения выполнения
+        isExecuting = false;
+        currentCommand = null; // Сбрасываем текущую команду
+
+        // Пытаемся выполнить следующую команду, если она есть
         TryExecuteNext();
-    }
-
-    public void Clear()
-    {
-        Debug.Log("CLEAR COMMAND LIST");
-        commandQueue.Clear();
-        isExecuting = false;
-        BearManager.Instance.GetSelectedBear().SetState(new IdleState(BearManager.Instance.GetSelectedBear()));
     }
 }

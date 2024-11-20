@@ -14,20 +14,40 @@ public class HarvestWoodCommand : Command
 
     public override async Task ExecuteAsync()
     {
-        await new MoveCommand(bear, targetTree.transform.position, 2f).ExecuteAsync();
-        
-        if (bear == null || targetTree == null)
-        {
-            Debug.LogError($"bear == {bear}, targetTree = {targetTree}");
-        }
-        bear.SetState(new HarvestState(bear, targetTree));
+        // Создаём команду MoveCommand для подхода к дереву
+        var moveCommand = new MoveCommand(bear, targetTree.transform.position, 2f);
+        await moveCommand.ExecuteAsync();
 
-        // Ожидаем завершения добычи дерева
+        // Проверяем, был ли медведь отменён или дерево недоступно
+        if (bear == null || targetTree == null || targetTree.IsDepleted())
+        {
+            Debug.LogWarning("Команда Harvest отменена или цель недоступна.");
+            return;
+        }
+
+        // Переход в состояние рубки дерева
+        bear.SetState(new HarvestState(bear, targetTree));
+        Debug.Log($"{bear.name} начал рубить дерево {targetTree.name}.");
+
+        // Ожидание завершения рубки дерева
         while (!targetTree.IsDepleted())
         {
+            // Проверяем, если команда была отменена
+            if (bear.commandQueue.currentCommand != this) // Исправлено: используем ссылку на queue из BearController
+            {
+                Debug.Log("HarvestWoodCommand отменена.");
+                return;
+            }
+
             await Task.Yield();
         }
 
         Debug.Log($"{bear.name} завершил добычу дерева {targetTree.name}.");
+    }
+
+    public override void Cancel()
+    {
+        bear.SetState(new IdleState(bear)); // При отмене возвращаем медведя в Idle состояние
+        Debug.Log("HarvestWoodCommand отменена.");
     }
 }

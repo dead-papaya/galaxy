@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BearController : MonoBehaviour
@@ -6,15 +7,19 @@ public class BearController : MonoBehaviour
     public Transform target;
     
     private BearState currentState;
-    private CommandQueue commandQueue;
-    private Command currentCommand = null;
+    public CommandQueue commandQueue = new CommandQueue();
+    public Command currentCommand = null;
 
     private void Awake()
     {
         commandQueue = new CommandQueue();
+    }
+
+    private void Start()
+    {
         SetState(new IdleState(this));
     }
-    
+
     public void SetState(BearState newState)
     {
         currentState?.Exit();
@@ -46,24 +51,12 @@ public class BearController : MonoBehaviour
     private void Update()
     {
         currentState?.Update();
+        UIManager.Instance.currentCommandListLengthTMPro.text = "Current command queue length: " + commandQueue.commandQueue.Count.ToString();
     }
 
     public void AddCommand(Command command)
     {
-        // Если команда - MoveCommand, то отменяем все предыдущие команды
-        if (command is MoveCommand)
-        {
-            // Очищаем очередь команд
-            commandQueue.Clear();
-            SetState(new IdleState(this));
-            Debug.Log("Все предыдущие команды отменены, добавляется новая MoveCommand.");
-        }
-        
-        commandQueue.EnqueueCommand(command);
+        commandQueue.AddCommand(command);
     }
-
-    public void ClearCommands()
-    {
-        commandQueue.Clear();
-    }
+    
 }

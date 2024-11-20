@@ -8,7 +8,6 @@ public class BearSelector : MonoBehaviour
         if (bear != null)
         {
             BearManager.Instance.SelectBear(bear);
-            Debug.Log($"Selected: {bear.name}");
         }
         else
         {
