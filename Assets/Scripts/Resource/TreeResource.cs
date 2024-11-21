@@ -8,7 +8,8 @@ public class TreeResource : MonoBehaviour
 {
     public int health = 5; // Количество ударов, чтобы дерево исчезло
     public float shakeDuration = 0.5f;  // Длительность тряски
-    public float shakeStrength = 0.2f; 
+    public float shakeStrength = 0.2f;
+    [SerializeField] private GameObject harvestSound;
 
     private void Start()
     {
@@ -20,7 +21,9 @@ public class TreeResource : MonoBehaviour
         health--;
         Debug.Log($"Дерево {name} получило урон. Осталось здоровья: {health}");
         UIManager.Instance.treeResourceCountText.text = (Convert.ToInt32(UIManager.Instance.treeResourceCountText.text) + 1).ToString();
+        GameObject spawnedSound = Instantiate(harvestSound);
         await ShakeTree();
+        Destroy(spawnedSound);
 
         if (health <= 0)
         {
