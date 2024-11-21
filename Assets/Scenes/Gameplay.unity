@@ -3906,8 +3906,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1893122658}
-  - component: {fileID: 1893122659}
   - component: {fileID: 1893122660}
+  - component: {fileID: 1893122661}
   m_Layer: 0
   m_Name: __UI_MANAGER__
   m_TagString: Untagged
@@ -3930,7 +3930,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1893122659
+--- !u!114 &1893122660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893122657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e4972f6e25d76449951c84b878d08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedBearNameText: {fileID: 1288776992}
+--- !u!114 &1893122661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3946,22 +3959,9 @@ MonoBehaviour:
   menuRectTransform: {fileID: 1550285970}
   menuPanel: {fileID: 1550285969}
   buttonPrefab: {fileID: 3392404170288418834, guid: 751e9a6b5da9bbc4a897ebc9a518485b, type: 3}
-  treeResourceCountText: {fileID: 1481092490}
-  currentStateTMPro: {fileID: 199483392}
-  currentCommandListLengthTMPro: {fileID: 175223954}
---- !u!114 &1893122660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893122657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e4972f6e25d76449951c84b878d08f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedBearNameText: {fileID: 1288776992}
+  treeResourceCountText: {fileID: 0}
+  currentStateTMPro: {fileID: 0}
+  currentCommandListLengthTMPro: {fileID: 0}
 --- !u!1 &2006546190
 GameObject:
   m_ObjectHideFlags: 0

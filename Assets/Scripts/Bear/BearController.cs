@@ -27,7 +27,6 @@ public class BearController : MonoBehaviour
         currentState?.Exit();
         currentState = newState;
         currentState.Enter();
-        UIManager.Instance.currentStateTMPro.text = currentState.GetType().ToString();
     }
     
     public BearState GetState()
@@ -38,8 +37,8 @@ public class BearController : MonoBehaviour
     public void Select()
     {
         Debug.Log($"{gameObject.name} selected.");
-        GetComponent<SpriteRenderer>().color = Color.green;
-        UIManager.Instance.currentStateTMPro.text = currentState.GetType().ToString();
+        GetComponent<SpriteRenderer>().color = new Color(160f/255f, 1f, 160f/255f);
+        //UIManager.Instance.currentStateTMPro.text = currentState.GetType().ToString();
         // Добавьте визуальные эффекты или выделение
     }
 
@@ -52,7 +51,7 @@ public class BearController : MonoBehaviour
 
     private void Update()
     {
-        currentState?.Update();
+        currentState?.Update(); 
     }
     
 }

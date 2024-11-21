@@ -5,10 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class ContextMenu : MonoBehaviour
 {
-    
-    public static UIManager Instance { get; private set; }
     
     private Camera mainCamera;
     [SerializeField] private RectTransform canvasRectTransform;  // Ссылка на RectTransform Canvas
@@ -16,18 +14,6 @@ public class UIManager : MonoBehaviour
     
     public GameObject menuPanel; // Панель контекстного меню
     public Button buttonPrefab;  // Префаб кнопки
-
-    public TextMeshProUGUI treeResourceCountText;
-    public TextMeshProUGUI currentStateTMPro;
-    public TextMeshProUGUI currentCommandListLengthTMPro;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-    }
 
     private void GenerateMenu(Vector3 position, List<Command> commands)
     {
@@ -88,8 +74,14 @@ public class UIManager : MonoBehaviour
                 CommandList commandList;
                 if (clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList))
                 {
+                    List<Command> viewedCommands = new List<Command>() {new MoveCommand(BearManager.Instance.GetSelectedBear(),mainCamera.ScreenToWorldPoint(mousePosition))};
+                    foreach (var command in commandList.Commands)
+                    {
+                        viewedCommands.Add(command);
+                    }
+                    
                     print("clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList)");
-                    GenerateMenu(mousePosition, commandList.Commands);
+                    GenerateMenu(mousePosition, viewedCommands);
                 }
                 else
                 {
@@ -127,7 +119,6 @@ public class UIManager : MonoBehaviour
         else if (position.y + menuHeight > screenHeight)
             position.y = screenHeight - menuHeight;
 
-        Debug.Log($"W: {screenWidth}, H: {screenHeight}, Pos: {position.x}, {position.y}");
         return position;
     }
 
