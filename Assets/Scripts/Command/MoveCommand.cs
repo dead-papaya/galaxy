@@ -7,7 +7,6 @@ public class MoveCommand : Command
     public BearController bear;
     private Vector3 targetPosition;
     private float endDistance;
-    private CommandQueue commandQueue;  // Добавим ссылку на очередь команд
 
     public MoveCommand(BearController bear, Vector3 target)
     {
@@ -15,7 +14,6 @@ public class MoveCommand : Command
         targetPosition = target;
         targetPosition.z = 0;
         endDistance = 1f;  // Стандартное значение, можно изменить
-        this.commandQueue = bear.commandQueue; // Передаем очередь команд
         commandName = "Идти сюда";
     }
 
@@ -25,7 +23,6 @@ public class MoveCommand : Command
         targetPosition = target;
         targetPosition.z = 0;
         this.endDistance = endDistance;
-        this.commandQueue = bear.commandQueue; // Передаем очередь команд
         commandName = "Идти сюда";
     }
 
@@ -38,12 +35,6 @@ public class MoveCommand : Command
         // Ожидаем, пока медведь достигнет цели или команда не будет отменена
         while (Vector3.Distance(bear.transform.position, targetPosition) > endDistance)
         {
-            // Проверяем, является ли эта команда текущей выполняемой командой
-            if (commandQueue.currentCommand != this)
-            {
-                return; // Если текущая команда не эта, выходим (команда отменена)
-            }
-
             await Task.Yield(); // Ожидаем следующего кадра
         }
 

@@ -7,13 +7,8 @@ public class BearController : MonoBehaviour
     public Transform target;
     
     private BearState currentState;
-    public CommandQueue commandQueue = new CommandQueue();
     public Command currentCommand = null;
-
-    private void Awake()
-    {
-        commandQueue = new CommandQueue();
-    }
+    
 
     private void Start()
     {
@@ -51,12 +46,6 @@ public class BearController : MonoBehaviour
     private void Update()
     {
         currentState?.Update();
-        UIManager.Instance.currentCommandListLengthTMPro.text = "Current command queue length: " + commandQueue.commandQueue.Count.ToString();
-    }
-
-    public void AddCommand(Command command)
-    {
-        commandQueue.AddCommand(command);
     }
     
 }

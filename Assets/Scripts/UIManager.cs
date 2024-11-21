@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour
             newButton.onClick.AddListener(delegate
             {
                 command.bear = BearManager.Instance.GetSelectedBear();
-                BearManager.Instance.GetSelectedBear().AddCommand(command);
+                command.ExecuteAsync();
                 CloseMenu();
             });
         }

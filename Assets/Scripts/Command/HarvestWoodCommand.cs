@@ -33,7 +33,7 @@ public class HarvestWoodCommand : Command
         while (!targetTree.IsDepleted())
         {
             // Проверяем, если команда была отменена
-            if (bear.commandQueue.currentCommand != this) // Исправлено: используем ссылку на queue из BearController
+            if (bear.currentCommand != this) // Исправлено: используем ссылку на queue из BearController
             {
                 Debug.Log("HarvestWoodCommand отменена.");
                 return;
