@@ -57,12 +57,10 @@ public class UIManager : MonoBehaviour
                 CloseMenu();
             });
         }
-        
-        
-
         // Показываем меню в позиции курсора
-        menuPanel.transform.position = ClampToScreen(position);
         menuPanel.SetActive(true);
+        menuPanel.GetComponent<RectTransform>().position = ClampToScreen(position);
+        
     }
 
     public void CloseMenu()
@@ -91,11 +89,11 @@ public class UIManager : MonoBehaviour
                 if (clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList))
                 {
                     print("clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList)");
-                    GenerateMenu(ClampToScreen(mousePosition), commandList.Commands);
+                    GenerateMenu(mousePosition, commandList.Commands);
                 }
                 else
                 {
-                    GenerateMenu(ClampToScreen(mousePosition), new List<Command>(){new MoveCommand(BearManager.Instance.GetSelectedBear(),mainCamera.ScreenToWorldPoint(mousePosition))});
+                    GenerateMenu(mousePosition, new List<Command>(){new MoveCommand(BearManager.Instance.GetSelectedBear(),mainCamera.ScreenToWorldPoint(mousePosition))});
                 }
             }
         }
@@ -119,16 +117,17 @@ public class UIManager : MonoBehaviour
 
         // Ограничение по горизонтали
         if (position.x < 0)
-            position.x = 0;
-        if (position.x + menuWidth > screenWidth)
-            position.x = screenWidth - menuWidth;
+            position.x = menuWidth/2f;
+        else if (position.x + menuWidth > screenWidth)
+            position.x = screenWidth - menuWidth/2f;
 
         // Ограничение по вертикали
         if (position.y < 0)
             position.y = 0;
-        if (position.y + menuHeight > screenHeight)
+        else if (position.y + menuHeight > screenHeight)
             position.y = screenHeight - menuHeight;
 
+        Debug.Log($"W: {screenWidth}, H: {screenHeight}, Pos: {position.x}, {position.y}");
         return position;
     }
 
