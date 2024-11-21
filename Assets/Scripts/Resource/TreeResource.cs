@@ -40,6 +40,7 @@ public class TreeResource : MonoBehaviour
     private void Deplete()
     {
         Debug.Log($"Дерево {name} уничтожено.");
+        gameObject.layer = 0;
         AstarPath.active.Scan();
         Destroy(gameObject, 0.1f);
     }
