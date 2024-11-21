@@ -45,7 +45,7 @@ public class MoveCommand : Command
     {
         // Если команда отменяется, устанавливаем медведя в Idle состояние
         bear.SetState(new IdleState(bear));
-        Debug.Log("Command MOVE canceled"); // При отмене возвращаем медведя в Idle состояние
+        Debug.Log("Command MOVE canceled");
     }
     
     private Vector3 GetNearestReachablePoint(Vector3 start, Vector3 target)
@@ -73,6 +73,7 @@ public class MoveCommand : Command
             }
         }
 
+        Debug.Log(nearestNode != null ? (Vector3)nearestNode.position : start);
         return nearestNode != null ? (Vector3)nearestNode.position : start;
     }
 }
