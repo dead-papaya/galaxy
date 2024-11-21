@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class HarvestWoodCommand : Command
@@ -15,8 +16,10 @@ public class HarvestWoodCommand : Command
     public override async Task ExecuteAsync()
     {
         // Создаём команду MoveCommand для подхода к дереву
-        var moveCommand = new MoveCommand(bear, targetTree.transform.position, 2f);
+        var moveCommand = new MoveCommand(bear, targetTree.transform.position, 1f);
         await moveCommand.ExecuteAsync();
+
+        await UniTask.Delay(500);
 
         // Проверяем, был ли медведь отменён или дерево недоступно
         if (bear == null || targetTree == null || targetTree.IsDepleted())
@@ -35,14 +38,14 @@ public class HarvestWoodCommand : Command
             // Проверяем, если команда была отменена
             if (bear.currentCommand != this) // Исправлено: используем ссылку на queue из BearController
             {
-                Debug.Log("HarvestWoodCommand отменена.");
+                Debug.Log("HarvestWoodCommand отменена. ");
                 return;
             }
 
             await Task.Yield();
         }
 
-        Debug.Log($"{bear.name} завершил добычу дерева {targetTree.name}.");
+        Debug.Log($"{bear.name} завершил добычу дерева {targetTree.name}. bear.currentCommand != this");
     }
 
     public override void Cancel()

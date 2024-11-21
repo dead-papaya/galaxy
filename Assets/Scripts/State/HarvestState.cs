@@ -4,7 +4,7 @@ using UnityEngine;
 public class HarvestState : BearState
 {
     private TreeResource targetTree;
-    private float harvestDuration = 1f; // Длительность рубки дерева в секундах
+    private float harvestDuration = 0.5f; // Длительность рубки дерева в секундах
     private bool isHarvesting = false;
 
     public HarvestState(BearController bear, TreeResource targetTree) : base(bear)
@@ -21,6 +21,7 @@ public class HarvestState : BearState
             return;
         }
 
+        
         Debug.Log($"{bear.name} начал рубить дерево {targetTree.name}.");
         StartHarvesting();
     }
@@ -33,6 +34,7 @@ public class HarvestState : BearState
         //bear.Animator.SetTrigger("Chop");
 
         // Ожидание завершения рубки
+        bear.bearAnimations.StartHarvesting();
         await Task.Delay((int)(harvestDuration * 1000));
         if(targetTree == null) Exit();
         if (isHarvesting)
@@ -44,6 +46,7 @@ public class HarvestState : BearState
             if (!targetTree.IsDepleted())
             {
                 Debug.Log($"{bear.name} продолжает рубить дерево.");
+                await Task.Delay((int)(harvestDuration * 1000));
                 StartHarvesting();
             }
             else
@@ -72,6 +75,7 @@ public class HarvestState : BearState
     public override void Exit()
     {
         Debug.Log($"{bear.name} прекратил рубку дерева.");
+        bear.bearAnimations.StopHarvesting();
         isHarvesting = false;
     }
 }

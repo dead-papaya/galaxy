@@ -16,6 +16,7 @@ public class MoveState : BearState
     {
         bear.target.position = targetPosition;
         bear.GetComponent<AIDestinationSetter>().target = bear.target;
+        bear.bearAnimations.StartMoving();
         Debug.Log($"{bear.name} starts moving.");
     }
 
@@ -32,6 +33,7 @@ public class MoveState : BearState
     public override void Exit()
     { 
         bear.GetComponent<AIDestinationSetter>().target = null;
+        bear.bearAnimations.StopMoving();
         Debug.Log($"{bear.name} stops moving.");
     }
 }

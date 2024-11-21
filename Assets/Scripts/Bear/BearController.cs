@@ -8,7 +8,14 @@ public class BearController : MonoBehaviour
     
     private BearState currentState;
     public Command currentCommand = null;
-    
+
+    public BearAnimations bearAnimations;
+
+
+    private void Awake()
+    {
+        bearAnimations = GetComponent<BearAnimations>();
+    }
 
     private void Start()
     {

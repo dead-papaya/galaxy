@@ -1,21 +1,26 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 public class TreeResource : MonoBehaviour
 {
     public int health = 5; // Количество ударов, чтобы дерево исчезло
+    public float shakeDuration = 0.5f;  // Длительность тряски
+    public float shakeStrength = 0.2f; 
 
     private void Start()
     {
         GetComponent<CommandList>().Commands = new List<Command>(){(new HarvestWoodCommand(null, this))};
     }
 
-    public void TakeDamage()
+    public async void TakeDamage()
     {
         health--;
         Debug.Log($"Дерево {name} получило урон. Осталось здоровья: {health}");
         UIManager.Instance.treeResourceCountText.text = (Convert.ToInt32(UIManager.Instance.treeResourceCountText.text) + 1).ToString();
+        await ShakeTree();
 
         if (health <= 0)
         {
@@ -32,5 +37,20 @@ public class TreeResource : MonoBehaviour
     {
         Debug.Log($"Дерево {name} уничтожено.");
         Destroy(gameObject, 0.1f);
+    }
+    
+    private async UniTask ShakeTree()
+    {
+        // Тряска дерева с использованием DOTween
+        Vector3 originalPosition = transform.position;
+
+        // Выполним анимацию с тряской, используя DOTween
+        transform.DOShakePosition(shakeDuration, shakeStrength, 20, 90, false, true);
+
+        // Дожидаемся завершения тряски
+        await UniTask.Delay((int)(shakeDuration * 1000));
+
+        // Вернем дерево в исходное положение
+        transform.position = originalPosition;
     }
 }
