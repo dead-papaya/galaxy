@@ -20,7 +20,6 @@ public class BearAnimations : MonoBehaviour
     // Устанавливает направление медведя (лицом к игроку или спиной)
     public void SetFacingDirection()
     {
-        print("SET FACING DIRECTION");
         // Для движения
         if (previousPosition.y < transform.position.y - 0.1f)
         {

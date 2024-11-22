@@ -73,7 +73,9 @@ public class MoveCommand : Command
             }
         }
 
-        Debug.Log(nearestNode != null ? (Vector3)nearestNode.position : start);
-        return nearestNode != null ? (Vector3)nearestNode.position : start;
+        if(nearestNode != null) Debug.Log("NOT NULL " + (Vector3)nearestNode.position); 
+        else Debug.Log("NULL " + start);
+
+        return nearestNode != null ? (Vector3)nearestNode.position : (Vector3)nearestNode.position;
     }
 }

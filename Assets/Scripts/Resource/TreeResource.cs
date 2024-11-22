@@ -10,6 +10,7 @@ public class TreeResource : MonoBehaviour
     public float shakeDuration = 0.5f;  // Длительность тряски
     public float shakeStrength = 0.2f;
     [SerializeField] private GameObject harvestSound;
+    [SerializeField] private GameObject harvestEndSound;
 
     private void Start()
     {
@@ -23,6 +24,12 @@ public class TreeResource : MonoBehaviour
         //UIManager.Instance.treeResourceCountText.text = (Convert.ToInt32(UIManager.Instance.treeResourceCountText.text) + 1).ToString();
         //Добавить дерево игроку
         GameObject spawnedSound = Instantiate(harvestSound);
+        if (health <= 0)
+        {
+            GameObject spawnedEndSound = Instantiate(harvestEndSound);
+            Destroy(spawnedEndSound, 1f);
+        }
+        
         await ShakeTree();
         Destroy(spawnedSound);
 
@@ -41,6 +48,7 @@ public class TreeResource : MonoBehaviour
     {
         Debug.Log($"Дерево {name} уничтожено.");
         gameObject.layer = 0;
+
         AstarPath.active.Scan();
         Destroy(gameObject, 0.1f);
     }
