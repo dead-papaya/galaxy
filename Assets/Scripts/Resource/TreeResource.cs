@@ -27,7 +27,7 @@ public class TreeResource : MonoBehaviour
         if (health <= 0)
         {
             GameObject spawnedEndSound = Instantiate(harvestEndSound);
-            Destroy(spawnedEndSound, 1f);
+            Destroy(spawnedEndSound, 3f);
         }
         
         await ShakeTree();

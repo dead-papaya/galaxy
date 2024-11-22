@@ -57,25 +57,41 @@ public class MoveCommand : Command
 
         // Получаем список всех достижимых узлов из стартовой точки
         var reachableNodes = PathUtilities.GetReachableNodes(startNode);
+        Debug.Log("LENB: "+reachableNodes.Count);
 
         // Ищем ближайшую достижимую точку к целевой
         GraphNode nearestNode = null;
         float minDistance = float.MaxValue;
-
+        
         foreach (var node in reachableNodes)
         {
             var worldPosition = (Vector3)node.position;
             float distance = Vector3.Distance(worldPosition, target);
-            if (distance < minDistance)
+            if (distance < minDistance && node.Walkable)
             {
                 minDistance = distance;
                 nearestNode = node;
+                Debug.Log("FOR !@!#$: " + node.position);
             }
         }
+        
+        if (nearestNode == null)
+        {
+            // Проверяем, находится ли агент на проходимом узле
+            var node = graph.GetNearest(bear.transform.position).node;
+            if (!node.Walkable)
+            {
+                // Перемещаем агента на ближайший проходимый узел
+                node = graph.GetNearest(bear.transform.position).node;
+                //bear.transform.position = (Vector3)node.position;
+                Debug.LogWarning("Agent was placed on a non-walkable node. Repositioning...");
+            }
+        }
+        
 
         if(nearestNode != null) Debug.Log("NOT NULL " + (Vector3)nearestNode.position); 
-        else Debug.Log("NULL " + start);
+        else Debug.Log("NULL " + startNode); 
 
-        return nearestNode != null ? (Vector3)nearestNode.position : (Vector3)nearestNode.position;
+        return nearestNode != null ? (Vector3)nearestNode.position : start;
     }
 }
