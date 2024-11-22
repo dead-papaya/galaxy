@@ -233,3 +233,6 @@ MonoBehaviour:
   shakeStrength: 0.1
   harvestSound: {fileID: 2058679062616742915, guid: 9262c26695c2c2c4ca9cf4662d49f711, type: 3}
   harvestEndSound: {fileID: 2058679062616742915, guid: f53fb931e2224f84a83c722c48320287, type: 3}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64

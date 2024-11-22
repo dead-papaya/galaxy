@@ -4,7 +4,7 @@ using UnityEngine;
 public class BearManager : MonoBehaviour
 {
     public static BearManager Instance { get; private set; }
-
+    public LayerMask playerLayerMask;
     public BearController selectedBear; // Текущий выбранный медведь
 
     void Awake()
@@ -37,6 +37,25 @@ public class BearManager : MonoBehaviour
         if (selectedBear != null)
         {
             selectedBear.Select(); // Устанавливаем выделение
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 20f, playerLayerMask);
+            
+            BearController bear;
+            foreach (var hit in hits)
+            {
+                if (hit.transform.gameObject.TryGetComponent<BearController>(out bear))
+                {
+                    BearManager.Instance.SelectBear(bear);
+                    break;
+                }
+            }
+
         }
     }
 

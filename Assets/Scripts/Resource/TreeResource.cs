@@ -11,10 +11,16 @@ public class TreeResource : MonoBehaviour
     public float shakeStrength = 0.2f;
     [SerializeField] private GameObject harvestSound;
     [SerializeField] private GameObject harvestEndSound;
+    [SerializeField] private LayerMask playerLayerMask;
 
-    private void Start()
+    private void Awake()
     {
         GetComponent<CommandList>().Commands = new List<Command>(){(new HarvestWoodCommand(null, this))};
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), new Vector2(2f, 2f), 0f, playerLayerMask))
+        {
+            print("DESTROY TREE AT POS: " + transform.position);
+            Destroy(gameObject);
+        }
     }
 
     public async void TakeDamage()
@@ -67,4 +73,5 @@ public class TreeResource : MonoBehaviour
         // Вернем дерево в исходное положение
         transform.position = originalPosition;
     }
+    
 }
