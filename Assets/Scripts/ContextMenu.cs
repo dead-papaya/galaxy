@@ -38,6 +38,7 @@ public class ContextMenu : MonoBehaviour
             // Привязываем действие к кнопке
             newButton.onClick.AddListener(delegate
             {
+                if(BearManager.Instance.GetSelectedBear().currentCommand != null) BearManager.Instance.GetSelectedBear().currentCommand.Cancel();
                 command.bear = BearManager.Instance.GetSelectedBear();
                 command.ExecuteAsync();
                 CloseMenu();

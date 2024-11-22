@@ -28,6 +28,7 @@ public class MoveCommand : Command
 
     public override async Task ExecuteAsync()
     {
+        bear.currentCommand = this;
         // Устанавливаем состояние движения
         Debug.Log($"{bear.name} начал движение.");
         bear.SetState(new MoveState(bear, targetPosition, endDistance));
@@ -37,13 +38,15 @@ public class MoveCommand : Command
         {
             await Task.Yield(); // Ожидаем следующего кадра
         }
-
+        
         Debug.Log($"{bear.name} завершил движение.");
+        Cancel();
     }
     
     public override void Cancel()
     {
         // Если команда отменяется, устанавливаем медведя в Idle состояние
+        bear.currentCommand = null;
         bear.SetState(new IdleState(bear));
         Debug.Log("Command MOVE canceled");
     }

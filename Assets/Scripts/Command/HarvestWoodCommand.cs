@@ -15,10 +15,12 @@ public class HarvestWoodCommand : Command
 
     public override async Task ExecuteAsync()
     {
+        
         // Создаём команду MoveCommand для подхода к дереву
         var moveCommand = new MoveCommand(bear, targetTree.transform.position, 1f);
         await moveCommand.ExecuteAsync();
-
+        
+        bear.currentCommand = this; // ставим команду медведю после выполнение MoveCommand
         await UniTask.Delay(500);
 
         // Проверяем, был ли медведь отменён или дерево недоступно
@@ -45,11 +47,13 @@ public class HarvestWoodCommand : Command
             await Task.Yield();
         }
 
+        bear.currentCommand = null;
         Debug.Log($"{bear.name} завершил добычу дерева {targetTree.name}. bear.currentCommand != this");
     }
 
     public override void Cancel()
     {
+        if(bear.currentCommand == this) bear.currentCommand = null;
         bear.SetState(new IdleState(bear)); // При отмене возвращаем медведя в Idle состояние
         Debug.Log("HarvestWoodCommand отменена.");
     }

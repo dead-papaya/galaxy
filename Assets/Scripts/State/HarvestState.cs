@@ -47,7 +47,7 @@ public class HarvestState : BearState
             {
                 Debug.Log($"{bear.name} продолжает рубить дерево.");
                 await Task.Delay((int)(harvestDuration * 1000));
-                StartHarvesting();
+                if(isHarvesting) StartHarvesting();
             }
             else
             {
@@ -74,8 +74,10 @@ public class HarvestState : BearState
 
     public override void Exit()
     {
-        Debug.Log($"{bear.name} прекратил рубку дерева.");
-        bear.bearAnimations.StopHarvesting();
         isHarvesting = false;
+        bear.bearAnimations.StopHarvesting();
+        Debug.Log($"{bear.name} прекратил рубку дерева. Exits");
+        
+        
     }
 }

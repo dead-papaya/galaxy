@@ -1748,14 +1748,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fdb95e0f91f72db4580580f33ef7a7f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9306435f5aab8e4a85d006f39568865, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3141,14 +3141,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fdb95e0f91f72db4580580f33ef7a7f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9306435f5aab8e4a85d006f39568865, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4417,7 +4417,7 @@ GameObject:
   - component: {fileID: 1937718500}
   - component: {fileID: 1937718499}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Soundtrack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4433,9 +4433,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2353121793432908667, guid: a5efccab76d42cc4b807506a3154fe59, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 2bc0c510d5f71b34a969b58da3e0b914, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7a37fef99efdf7c4f9488e21a32ffe14, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.257
   m_Pitch: 1
   Loop: 1
   Mute: 0

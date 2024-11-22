@@ -24,7 +24,6 @@ public class BearManager : MonoBehaviour
         if (selectedBear == bear)
         {
             // Если медведь уже выбран, ничего не делать
-            print("SELECTED BEAR = BEAR");
             return;
         }
 

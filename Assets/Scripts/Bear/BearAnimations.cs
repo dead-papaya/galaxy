@@ -133,12 +133,14 @@ public class BearAnimations : MonoBehaviour
     // Для начала анимации рубки дерева
     public void StartHarvesting()
     {
+        Debug.Log("START HARVESTING ANIM");
         _animator.SetBool("isHarvesting", true);
     }
 
     // Для завершения анимации рубки
     public void StopHarvesting()
     {
+        Debug.Log("STOP HARVESTING ANIM");
         _animator.SetBool("isHarvesting", false);
     }
 }
