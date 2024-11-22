@@ -27,7 +27,7 @@ public class TreeResource : MonoBehaviour
     {
         health--;
         Debug.Log($"Дерево {name} получило урон. Осталось здоровья: {health}");
-        //UIManager.Instance.treeResourceCountText.text = (Convert.ToInt32(UIManager.Instance.treeResourceCountText.text) + 1).ToString();
+        UIManager.Instance.woodText.text = (Convert.ToInt32(UIManager.Instance.woodText.text) + 1).ToString();
         //Добавить дерево игроку
         GameObject spawnedSound = Instantiate(harvestSound);
         if (health <= 0)
