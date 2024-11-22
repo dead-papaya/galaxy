@@ -20,8 +20,8 @@ public class HarvestState : BearState
             bear.SetState(new IdleState(bear));
             return;
         }
-
         
+        bear.bearAnimations.SetFacingDirection(targetTree.transform.position);
         Debug.Log($"{bear.name} начал рубить дерево {targetTree.name}.");
         StartHarvesting();
     }
