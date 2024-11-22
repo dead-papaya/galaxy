@@ -44,6 +44,32 @@ public class BearAnimations : MonoBehaviour
         previousPosition = transform.position;
     }
     
+    public void SetFacingDirection(Vector3 targetPos)
+    {
+        // Для движения
+        if (targetPos.y < transform.position.y - 0.1f)
+        {
+            // Медведь идет спиной
+            _animator.SetBool("isFacingPlayer", false);
+        }
+        else if(previousPosition.y > transform.position.y - 0.1f)
+        {
+            // Медведь идет лицом
+            _animator.SetBool("isFacingPlayer", true);
+        }
+
+        if (targetPos.x > transform.position.x)
+        {
+            _spriteRenderer.flipX = true;
+        }
+        else if(targetPos.x < transform.position.x)
+        {
+            _spriteRenderer.flipX = false;
+        }
+
+        previousPosition = transform.position;
+    }
+    
     // Запуск обновления направления с использованием UniTask
     public void StartFacingDirectionUpdates()
     {

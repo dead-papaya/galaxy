@@ -79,7 +79,6 @@ public class ContextMenu : MonoBehaviour
                     {
                         viewedCommands.Add(command);
                     }
-                    
                     print("clickedObject != null && clickedObject.TryGetComponent<CommandList>(out commandList)");
                     GenerateMenu(mousePosition, viewedCommands);
                 }
@@ -104,13 +103,13 @@ public class ContextMenu : MonoBehaviour
         float menuHeight = menuRectTransform.rect.height;
 
         // Смещение: размещение справа снизу от мыши
-        position.x += menuWidth / 4f;  // Сдвигаем вправо
-        position.y -= menuHeight / 4f; // Сдвигаем вниз
+        position.x += menuWidth / 2f;  // Сдвигаем вправо
+        position.y -= menuHeight / 2f; // Сдвигаем вниз
 
         // Ограничение по горизонтали
-        if (position.x < 0)
+        if (position.x < 0 + menuWidth/2f)
             position.x = menuWidth/2f;
-        else if (position.x + menuWidth > screenWidth)
+        else if (position.x > screenWidth - menuWidth/2f)
             position.x = screenWidth - menuWidth/2f;
 
         // Ограничение по вертикали

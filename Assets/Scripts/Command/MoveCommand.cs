@@ -71,7 +71,6 @@ public class MoveCommand : Command
             {
                 minDistance = distance;
                 nearestNode = node;
-                Debug.Log("FOR !@!#$: " + node.position);
             }
         }
         
