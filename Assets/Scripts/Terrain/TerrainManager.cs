@@ -54,17 +54,31 @@ public class TerrainManager : MonoBehaviour
                 {
                     tilePrefab = grassPrefab;
                     parent = parentStatic;
-                    if (Random.value is > 0.005f and <= 0.2f)
+                    if (sample < 0.7f)
                     {
-                        GameObject spawnedDecor = Instantiate(decorPrefabs[Random.Range(0, decorPrefabs.Length)], new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
-                        spawnedDecor.transform.parent = parentDecor;
+                        if (Random.value is > 0.005f and <= 0.2f)
+                        {
+                            GameObject spawnedDecor = Instantiate(decorPrefabs[Random.Range(0, decorPrefabs.Length)], new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                            spawnedDecor.transform.parent = parentDecor;
+                        }
+                        else if (Random.value <= 0.007f)
+                        {
+                            GameObject spawnedResource = Instantiate(resourcePrefabs[0], 
+                                new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                            spawnedResource.transform.parent = parentResource;
+                        }
+
                     }
-                    else if (Random.value <= 0.005f)
+                    else
                     {
-                        GameObject spawnedResource = Instantiate(resourcePrefabs[Random.Range(0, resourcePrefabs.Length)], 
-                            new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
-                        spawnedResource.transform.parent = parentResource;
+                        if (Random.value <= 0.03f)
+                        {
+                            GameObject spawnedResource = Instantiate(resourcePrefabs[1], 
+                                new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                            spawnedResource.transform.parent = parentResource;
+                        }
                     }
+
                 }
                 
                 GameObject spawnedBlock = Instantiate(tilePrefab, new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);

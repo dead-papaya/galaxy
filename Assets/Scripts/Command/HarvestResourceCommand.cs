@@ -10,7 +10,14 @@ public class HarvestResourceCommand : Command
     {
         this.bear = bear;
         this.tResourceObject = resource;
-        commandName = "Срубить дерево";
+        if (resource is TreeResource)
+        {
+            commandName = "Срубить дерево";
+        }
+        else if (resource is StoneResource)
+        {
+            commandName = "Добыть руду";
+        }
     }
 
     public override async Task ExecuteAsync()
