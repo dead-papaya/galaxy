@@ -2525,7 +2525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 100
   height: 100
-  mapScale: 3
+  mapScale: 40
   seed: 12164
   grassPrefab: {fileID: 7329284757898850232, guid: 548104e5de0bdca45af9b73b5df133f4, type: 3}
   waterPrefab: {fileID: 1354723369257012324, guid: 84f6b9eda66a4ba4b845aa422cd8185f, type: 3}

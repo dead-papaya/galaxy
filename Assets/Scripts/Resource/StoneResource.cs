@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
@@ -15,7 +16,18 @@ public class StoneResource : ResourceObject
             print("DESTROY STONE AT POS: " + transform.position);
             Destroy(gameObject);
         }
-        if (Physics2D.OverlapBox(new Vector2(harvestTransform.position.x, harvestTransform.position.y), new Vector2(0.1f, 0.1f), 0f, gameObject.layer))
+    }
+    
+    private void Start()
+    {
+        DestroyNearby();
+    }
+
+    private async void DestroyNearby()
+    {
+        await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+        print("Destroy NEARBY");
+        if (Physics2D.OverlapBox(new Vector2(harvestTransform.position.x, harvestTransform.position.y), new Vector2(0.2f, 0.2f), 0f, gameObject.layer))
         {
             print("DESTROY STONE AT POS: " + transform.position);
             Destroy(gameObject);
@@ -70,5 +82,15 @@ public class StoneResource : ResourceObject
 
         // Вернем дерево в исходное положение
         transform.position = originalPosition;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == gameObject.layer) Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(new Vector2(harvestTransform.position.x, harvestTransform.position.y), new Vector2(0.2f, 0.2f));
     }
 }

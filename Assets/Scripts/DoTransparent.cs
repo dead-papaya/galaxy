@@ -29,7 +29,7 @@ public class DoTransparent : MonoBehaviour
     public void CheckTransparency()
     {
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        if (!Physics2D.OverlapBox(new Vector2(transform.position.x+ boxCollider.offset.x * 15, transform.position.y + boxCollider.offset.y * 15),
+        if (!Physics2D.OverlapBox(new Vector2(transform.position.x+ boxCollider.offset.x * transform.localScale.x, transform.position.y + boxCollider.offset.y * transform.localScale.y),
                 new Vector2(boxCollider.size.x * transform.localScale.x, boxCollider.size.y * transform.localScale.y), 0f, BearManager.Instance.playerLayerMask))
         {
             ChangeTransparency(1f, 0.5f);

@@ -61,7 +61,7 @@ public class TerrainManager : MonoBehaviour
                             GameObject spawnedDecor = Instantiate(decorPrefabs[Random.Range(0, decorPrefabs.Length)], new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
                             spawnedDecor.transform.parent = parentDecor;
                         }
-                        else if (Random.value <= 0.007f)
+                        else if (Random.value <= 0.004f)
                         {
                             GameObject spawnedResource = Instantiate(resourcePrefabs[0], 
                                 new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
@@ -71,7 +71,7 @@ public class TerrainManager : MonoBehaviour
                     }
                     else
                     {
-                        if (Random.value <= 0.03f)
+                        if (Random.value <= 0.01f)
                         {
                             GameObject spawnedResource = Instantiate(resourcePrefabs[1], 
                                 new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
@@ -80,10 +80,16 @@ public class TerrainManager : MonoBehaviour
                     }
 
                 }
+
+                if (tilePrefab != null)
+                {
+                    GameObject spawnedBlock = Instantiate(tilePrefab,
+                        new Vector3(x / 4f, y / 4f, 0) - new Vector3(width / 8f, height / 8f), Quaternion.identity);
+                    spawnedBlock.transform.parent = parent;
+                    c++;
+                }
+
                 
-                GameObject spawnedBlock = Instantiate(tilePrefab, new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
-                spawnedBlock.transform.parent = parent;
-                c++;
             }
         }
     }
