@@ -2,14 +2,14 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class HarvestWoodCommand : Command
+public class HarvestResourceCommand : Command
 {
-    private TreeResource targetTree;
+    private ResourceObject tResourceObject;
 
-    public HarvestWoodCommand(BearController bear, TreeResource tree)
+    public HarvestResourceCommand(BearController bear, ResourceObject resource)
     {
         this.bear = bear;
-        this.targetTree = tree;
+        this.tResourceObject = resource;
         commandName = "Срубить дерево";
     }
 
@@ -17,25 +17,25 @@ public class HarvestWoodCommand : Command
     {
         
         // Создаём команду MoveCommand для подхода к дереву
-        var moveCommand = new MoveCommand(bear, targetTree.transform.position, 1f);
+        var moveCommand = new MoveCommand(bear, tResourceObject.transform.position, 1f);
         await moveCommand.ExecuteAsync();
         
         bear.currentCommand = this; // ставим команду медведю после выполнение MoveCommand
         await UniTask.Delay(500);
 
         // Проверяем, был ли медведь отменён или дерево недоступно
-        if (bear == null || targetTree == null || targetTree.IsDepleted())
+        if (bear == null || tResourceObject == null || tResourceObject.IsDepleted())
         {
             Debug.LogWarning("Команда Harvest отменена или цель недоступна.");
             return;
         }
 
         // Переход в состояние рубки дерева
-        bear.SetState(new HarvestState(bear, targetTree));
-        Debug.Log($"{bear.name} начал рубить дерево {targetTree.name}.");
+        bear.SetState(new HarvestState(bear, tResourceObject));
+        Debug.Log($"{bear.name} начал рубить дерево {tResourceObject.name}.");
 
         // Ожидание завершения рубки дерева
-        while (!targetTree.IsDepleted())
+        while (!tResourceObject.IsDepleted())
         {
             // Проверяем, если команда была отменена
             if (bear.currentCommand != this)
@@ -48,7 +48,7 @@ public class HarvestWoodCommand : Command
         }
 
         bear.currentCommand = null;
-        Debug.Log($"{bear.name} завершил добычу дерева {targetTree.name}. bear.currentCommand != this");
+        Debug.Log($"{bear.name} завершил добычу дерева {tResourceObject.name}. bear.currentCommand != this");
     }
 
     public override void Cancel()

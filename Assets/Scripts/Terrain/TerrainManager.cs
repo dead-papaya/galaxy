@@ -78,16 +78,6 @@ public class TerrainManager : MonoBehaviour
     {
         gridGraph = AstarPath.active.data.gridGraph;
 
-        // // Инициализация клеток для навигации
-        // for (int x = 0; x < width; x++)
-        // {
-        //     for (int y = 0; y < height; y++)
-        //     {
-        //         // Получаем узел на основе мировых координат
-        //         GridNode node = (GridNode)gridGraph.GetNode(x, y);
-        //     }
-        // }
-
         // Перестроим граф пути
         AstarPath.active.Scan();
     }

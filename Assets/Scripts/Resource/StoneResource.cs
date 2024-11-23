@@ -1,10 +1,10 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class TreeResource : ResourceObject
+public class StoneResource : ResourceObject
 {
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class TreeResource : ResourceObject
     public override async void TakeDamage()
     {
         health--;
-        Debug.Log($"Дерево {name} получило урон. Осталось здоровья: {health}");
+        Debug.Log($"Камень {name} получил урон. Осталось здоровья: {health}");
         //Spawn resource
         //UIManager.Instance.woodText.text = (Convert.ToInt32(UIManager.Instance.woodText.text) + 1).ToString();
         //Добавить дерево игроку
@@ -30,7 +30,7 @@ public class TreeResource : ResourceObject
             Destroy(spawnedEndSound, 3f);
         }
         
-        await ShakeTree();
+        await Shake();
         Destroy(spawnedSound);
 
         if (health <= 0)
@@ -41,14 +41,14 @@ public class TreeResource : ResourceObject
     
     protected override void Deplete()
     {
-        Debug.Log($"Дерево {name} уничтожено.");
+        Debug.Log($"Камень {name} уничтожен.");
         gameObject.layer = 0;
 
         AstarPath.active.Scan();
         Destroy(gameObject, 0.1f);
     }
     
-    private async UniTask ShakeTree()
+    private async UniTask Shake()
     {
         // Тряска дерева с использованием DOTween
         Vector3 originalPosition = transform.position;
@@ -62,5 +62,4 @@ public class TreeResource : ResourceObject
         // Вернем дерево в исходное положение
         transform.position = originalPosition;
     }
-    
 }

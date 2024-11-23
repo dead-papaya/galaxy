@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class HarvestState : BearState
 {
-    private TreeResource targetTree;
+    private ResourceObject resourceObject;
     private float harvestDuration = 0.5f; // Длительность рубки дерева в секундах
     private bool isHarvesting = false;
 
-    public HarvestState(BearController bear, TreeResource targetTree) : base(bear)
+    public HarvestState(BearController bear, ResourceObject resource) : base(bear)
     {
-        this.targetTree = targetTree;
+        this.resourceObject = resource;
     }
 
     public override void Enter()
     {
-        if (targetTree == null)
+        if (resourceObject == null)
         {
             Debug.LogError("Нет цели для рубки дерева!");
             bear.SetState(new IdleState(bear));
             return;
         }
         
-        bear.bearAnimations.SetFacingDirection(targetTree.transform.position);
-        Debug.Log($"{bear.name} начал рубить дерево {targetTree.name}.");
+        bear.bearAnimations.SetFacingDirection(resourceObject.transform.position);
+        Debug.Log($"{bear.name} начал рубить дерево {resourceObject.name}.");
         StartHarvesting();
     }
 
@@ -36,14 +36,14 @@ public class HarvestState : BearState
         // Ожидание завершения рубки
         bear.bearAnimations.StartHarvesting();
         await Task.Delay((int)(harvestDuration * 1000));
-        if(targetTree == null) Exit();
+        if(resourceObject == null) Exit();
         if (isHarvesting)
         {
             // Уменьшаем здоровье дерева
-            targetTree.TakeDamage();
+            resourceObject.TakeDamage();
 
             // Проверяем, можно ли продолжить рубку
-            if (!targetTree.IsDepleted())
+            if (!resourceObject.IsDepleted())
             {
                 Debug.Log($"{bear.name} продолжает рубить дерево.");
                 await Task.Delay((int)(harvestDuration * 1000));
@@ -77,7 +77,5 @@ public class HarvestState : BearState
         isHarvesting = false;
         bear.bearAnimations.StopHarvesting();
         Debug.Log($"{bear.name} прекратил рубку дерева. Exits");
-        
-        
     }
 }
