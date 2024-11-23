@@ -24,7 +24,7 @@ public class HarvestResourceCommand : Command
     {
         
         // Создаём команду MoveCommand для подхода к дереву
-        var moveCommand = new MoveCommand(bear, tResourceObject.transform.position, 1f);
+        var moveCommand = new MoveCommand(bear, tResourceObject.harvestTransform.position, 1f);
         await moveCommand.ExecuteAsync();
         
         bear.currentCommand = this; // ставим команду медведю после выполнение MoveCommand

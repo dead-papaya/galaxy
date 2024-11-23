@@ -16,13 +16,13 @@ public class HarvestState : BearState
     {
         if (resourceObject == null)
         {
-            Debug.LogError("Нет цели для рубки дерева!");
+            Debug.LogError("Нет цели для добычи!");
             bear.SetState(new IdleState(bear));
             return;
         }
         
         bear.bearAnimations.SetFacingDirection(resourceObject.transform.position);
-        Debug.Log($"{bear.name} начал рубить дерево {resourceObject.name}.");
+        Debug.Log($"{bear.name} начал добычу {resourceObject.name}.");
         StartHarvesting();
     }
 
@@ -46,20 +46,20 @@ public class HarvestState : BearState
             // Проверяем, можно ли продолжить рубку
             if (!resourceObject.IsDepleted())
             {
-                Debug.Log($"{bear.name} продолжает рубить дерево.");
+                Debug.Log($"{bear.name} продолжает добывать ресурс.");
                 await Task.Delay((int)(harvestDuration * 1000));
                 if(isHarvesting) StartHarvesting();
             }
             else
             {
-                Debug.Log($"{bear.name} завершил рубку дерева.");
+                Debug.Log($"{bear.name} завершил добычу.");
                 isHarvesting = false;
                 if(!(bear.GetState() is MoveState)) bear.SetState(new IdleState(bear));
             }
         }
         else
         {
-            Debug.Log($"{bear.name} завершил рубку дерева.");
+            Debug.Log($"{bear.name} завершил добычу 2.");
             isHarvesting = false;
             if(!(bear.GetState() is MoveState)) bear.SetState(new IdleState(bear));
         }
@@ -78,6 +78,6 @@ public class HarvestState : BearState
         isHarvesting = false;
         if(resourceObject is TreeResource) bear.bearAnimations.StopHarvesting();
         else bear.bearAnimations.StopMining();
-        Debug.Log($"{bear.name} прекратил рубку дерева. Exits");
+        Debug.Log($"{bear.name} прекратил добычу. Выход");
     }
 }

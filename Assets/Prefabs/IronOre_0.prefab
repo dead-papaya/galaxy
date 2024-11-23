@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2881004587032713627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4270043087068343473}
+  m_Layer: 8
+  m_Name: HarvestPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4270043087068343473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2881004587032713627}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.805, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7483348393445197618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3091668688147643812
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,7 +66,8 @@ Transform:
   m_LocalPosition: {x: 2.75, y: 2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4270043087068343473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3871801285685373967
@@ -231,8 +263,10 @@ MonoBehaviour:
   health: 10
   shakeDuration: 0.25
   shakeStrength: 0.1
+  harvestTransform: {fileID: 4270043087068343473}
   harvestSound: {fileID: 2058679062616742915, guid: a3a92408f6c0e7f4898415ad2e9dba7d, type: 3}
   harvestEndSound: {fileID: 2058679062616742915, guid: 927cf628706db1145a556df58ec16046, type: 3}
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  pickaxeSound: {fileID: 2058679062616742915, guid: 8beddf1901211f241aa03e19d8cda8b5, type: 3}

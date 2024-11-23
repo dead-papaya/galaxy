@@ -24,12 +24,7 @@ public class DoTransparent : MonoBehaviour
     {
         CheckTransparency();
     }
-
-
-    private void Update()
-    {
-
-    }
+    
 
     public void CheckTransparency()
     {

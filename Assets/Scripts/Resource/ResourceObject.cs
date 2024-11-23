@@ -7,6 +7,7 @@ public class ResourceObject : MonoBehaviour
     public int health = 5; // Количество ударов, чтобы дерево исчезло
     public float shakeDuration = 0.5f;  // Длительность тряски
     public float shakeStrength = 0.2f;
+    public Transform harvestTransform;
     [SerializeField] protected GameObject harvestSound;
     [SerializeField] protected GameObject harvestEndSound;
     [SerializeField] protected LayerMask playerLayerMask;

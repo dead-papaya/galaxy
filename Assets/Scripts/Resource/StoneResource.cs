@@ -6,12 +6,18 @@ using UnityEngine;
 
 public class StoneResource : ResourceObject
 {
+    public GameObject pickaxeSound;
     private void Awake()
     {
         GetComponent<CommandList>().Commands = new List<Command>(){(new HarvestResourceCommand(null, this))};
-        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), new Vector2(2f, 2f), 0f, playerLayerMask))
+        if (Physics2D.OverlapBox(new Vector2(transform.position.x, transform.position.y), new Vector2(1f, 1f), 0f, playerLayerMask))
         {
-            print("DESTROY TREE AT POS: " + transform.position);
+            print("DESTROY STONE AT POS: " + transform.position);
+            Destroy(gameObject);
+        }
+        if (Physics2D.OverlapBox(new Vector2(harvestTransform.position.x, harvestTransform.position.y), new Vector2(0.1f, 0.1f), 0f, gameObject.layer))
+        {
+            print("DESTROY STONE AT POS: " + transform.position);
             Destroy(gameObject);
         }
     }
@@ -23,6 +29,9 @@ public class StoneResource : ResourceObject
         //Spawn resource
         //UIManager.Instance.woodText.text = (Convert.ToInt32(UIManager.Instance.woodText.text) + 1).ToString();
         //Добавить дерево игроку
+        GameObject spanedPickaxeSound = Instantiate(pickaxeSound);
+        Destroy(spanedPickaxeSound, 0.5f);
+        
         GameObject spawnedSound = Instantiate(harvestSound);
         Destroy(spawnedSound, 1f);
         if (health <= 0)
@@ -32,7 +41,6 @@ public class StoneResource : ResourceObject
         }
         
         await Shake();
-        
 
         if (health <= 0)
         {
