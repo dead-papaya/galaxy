@@ -143,4 +143,17 @@ public class BearAnimations : MonoBehaviour
         Debug.Log("STOP HARVESTING ANIM");
         _animator.SetBool("isHarvesting", false);
     }
+    
+    public void StartMining()
+    {
+        Debug.Log("START MINING ANIM");
+        _animator.SetBool("isMining", true);
+    }
+
+    // Для завершения анимации рубки
+    public void StopMining()
+    {
+        Debug.Log("STOP MINING ANIM");
+        _animator.SetBool("isMining", false);
+    }
 }

@@ -24,6 +24,7 @@ public class StoneResource : ResourceObject
         //UIManager.Instance.woodText.text = (Convert.ToInt32(UIManager.Instance.woodText.text) + 1).ToString();
         //Добавить дерево игроку
         GameObject spawnedSound = Instantiate(harvestSound);
+        Destroy(spawnedSound, 1f);
         if (health <= 0)
         {
             GameObject spawnedEndSound = Instantiate(harvestEndSound);
@@ -31,7 +32,7 @@ public class StoneResource : ResourceObject
         }
         
         await Shake();
-        Destroy(spawnedSound);
+        
 
         if (health <= 0)
         {

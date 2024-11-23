@@ -34,7 +34,8 @@ public class HarvestState : BearState
         //bear.Animator.SetTrigger("Chop");
 
         // Ожидание завершения рубки
-        bear.bearAnimations.StartHarvesting();
+        if(resourceObject is TreeResource) bear.bearAnimations.StartHarvesting();
+        else bear.bearAnimations.StartMining();
         await Task.Delay((int)(harvestDuration * 1000));
         if(resourceObject == null) Exit();
         if (isHarvesting)
@@ -75,7 +76,8 @@ public class HarvestState : BearState
     public override void Exit()
     {
         isHarvesting = false;
-        bear.bearAnimations.StopHarvesting();
+        if(resourceObject is TreeResource) bear.bearAnimations.StopHarvesting();
+        else bear.bearAnimations.StopMining();
         Debug.Log($"{bear.name} прекратил рубку дерева. Exits");
     }
 }

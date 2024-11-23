@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7936971858909059830}
   - component: {fileID: 118229838015439706}
   m_Layer: 0
-  m_Name: Sound_Harvest
+  m_Name: Sound_Mining
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,9 +42,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 3821434212198864790, guid: a5efccab76d42cc4b807506a3154fe59, type: 2}
-  m_audioClip: {fileID: 8300000, guid: c0810e122ed6cfd40896f515a1c7f5ca, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1cfab7931546d3c42b32ba62bc1d6288, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.649
   m_Pitch: 1
   Loop: 0
   Mute: 0
