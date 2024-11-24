@@ -38,7 +38,7 @@ public class BearController : MonoBehaviour
     public void Select()
     {
         Debug.Log($"{gameObject.name} selected.");
-        GetComponent<SpriteRenderer>().color = new Color(160f/255f, 1f, 160f/255f);
+        
         UIManager.Instance.contextMenu.SetActive(false);
         //UIManager.Instance.currentStateTMPro.text = currentState.GetType().ToString();
         // Добавьте визуальные эффекты или выделение
@@ -47,7 +47,7 @@ public class BearController : MonoBehaviour
     public void Deselect()
     {
         Debug.Log($"{gameObject.name} deselected.");
-        GetComponent<SpriteRenderer>().color = Color.white;
+        
         // Уберите визуальные эффекты
     }
 
