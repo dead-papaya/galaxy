@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private RectTransform resourcePanel;
     
     private Dictionary<string, ResourceIcon> resourceIcons = new();
+
+    [Header("Windows")] 
+    [SerializeField] private GameObject buildingMenu;
     
     [Header("Debug")]
     public TextMeshProUGUI commandText;
@@ -98,6 +101,11 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            buildingMenu.SetActive(!buildingMenu.activeSelf);
         }
     }
 
