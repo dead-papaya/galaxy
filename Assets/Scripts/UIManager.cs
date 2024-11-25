@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         resourceIcons.Add(resourceName, resourceIcon.GetComponent<ResourceIcon>());
 
         // Инициализация количества ресурса
-        resourceIcon.GetComponent<ResourceIcon>().Initialize("Wood");
+        resourceIcon.GetComponent<ResourceIcon>().Initialize();
     }
 
     

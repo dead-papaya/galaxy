@@ -7358,7 +7358,7 @@ MonoBehaviour:
   - {fileID: 5345513370568648115, guid: 63624bd20939b8745ba2ecb138135853, type: 3}
   resourcePrefabs:
   - {fileID: 6088032985598158198, guid: d89e3412b2205c64cae8ddf05ac1d99a, type: 3}
-  - {fileID: 3091668688147643812, guid: fe94405232a620b46b6b7a772cb9c31e, type: 3}
+  - {fileID: 3091668688147643812, guid: 52073a4c72c215e4d981e78b191c38ec, type: 3}
   parentStatic: {fileID: 1389889593}
   parentObstacle: {fileID: 326636999}
   parentDecor: {fileID: 1107069882}

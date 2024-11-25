@@ -60,6 +60,7 @@ public class StoneResource : ResourceObject
         }
     }
     
+    
     protected override void Deplete()
     {
         Debug.Log($"Камень {name} уничтожен.");
@@ -71,16 +72,14 @@ public class StoneResource : ResourceObject
     
     private async UniTask Shake()
     {
-        // Тряска дерева с использованием DOTween
         Vector3 originalPosition = transform.position;
-
-        // Выполним анимацию с тряской, используя DOTween
+        
         transform.DOShakePosition(shakeDuration, shakeStrength, 20, 90, false, true);
 
-        // Дожидаемся завершения тряски
+        SpawnResource();
+        
         await UniTask.Delay((int)(shakeDuration * 1000));
-
-        // Вернем дерево в исходное положение
+        
         transform.position = originalPosition;
     }
 

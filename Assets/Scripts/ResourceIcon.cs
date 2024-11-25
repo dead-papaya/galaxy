@@ -16,20 +16,20 @@ public class ResourceIcon : MonoBehaviour
     /// <summary>
     /// Инициализация иконки ресурса.
     /// </summary>
-    public void Initialize(string resourceName)
+    public void Initialize()
     {
         count = 0;
         countText.text = count.ToString();
 
         // Установим иконку ресурса по имени
-        Sprite resourceSprite = Resources.Load<Sprite>($"Icons/{resourceName}");
+        Sprite resourceSprite = Resources.Load<Sprite>($"Icons/{name}");
         if (resourceSprite != null)
         {
             iconImage.sprite = resourceSprite;
         }
         else
         {
-            Debug.LogWarning($"Иконка для ресурса '{resourceName}' не найдена.");
+            Debug.LogWarning($"Иконка для ресурса '{name}' не найдена.");
         }
     }
 
