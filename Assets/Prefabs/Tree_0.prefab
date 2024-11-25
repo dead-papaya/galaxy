@@ -269,3 +269,5 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  resourcePrefab: {fileID: 4921076012212477959, guid: 8392d4c5778cea44dba85f77c19a958b, type: 3}
+  spawnRadius: 2

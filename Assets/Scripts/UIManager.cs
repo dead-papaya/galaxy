@@ -9,13 +9,20 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
-    public TextMeshProUGUI woodText;
+    public Canvas canvas;
+    public RectTransform canvasTransform;
+    //public Dictionary<string, RectTransform> ItemsTransforms;
     public GameObject pauseMenu;
     public GameObject contextMenu;
+    [SerializeField] private GameObject resourceIconPrefab;
+    [SerializeField] private RectTransform resourcePanel;
+    
+    private Dictionary<string, ResourceIcon> resourceIcons = new();
     
     [Header("Debug")]
     public TextMeshProUGUI commandText;
     public TextMeshProUGUI stateText;
+    
 
     private void Awake()
     {
@@ -29,6 +36,61 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    #region Resource
+
+    /// <summary>
+    /// Обновляет счетчик ресурса. Если иконка еще не создана, она создается.
+    /// </summary>
+    public void UpdateResourceCount(string resourceName, int amount)
+    {
+        if (!resourceIcons.ContainsKey(resourceName))
+        {
+            CreateResourceIcon(resourceName);
+        }
+
+        // Обновляем счетчик ресурса
+        resourceIcons[resourceName].IncreaseAmount(amount);
+    }
+
+    /// <summary>
+    /// Создает новую иконку ресурса в UI.
+    /// </summary>
+    private void CreateResourceIcon(string resourceName)
+    {
+        // Пример создания иконки для ресурса
+        GameObject resourceIcon = Instantiate(resourceIconPrefab, resourcePanel.transform);
+        resourceIcon.name = resourceName;
+        resourceIcons.Add(resourceName, resourceIcon.GetComponent<ResourceIcon>());
+
+        // Инициализация количества ресурса
+        resourceIcon.GetComponent<ResourceIcon>().Initialize("Wood");
+    }
+
+    
+    public RectTransform GetResourceIconTarget(string resourceName)
+    {
+        if (!resourceIcons.ContainsKey(resourceName))
+        {
+            CreateResourceIcon(resourceName);
+        }
+
+        // Возвращаем RectTransform иконки ресурса
+        return resourceIcons[resourceName].GetComponent<RectTransform>();
+    }
+
+    public void AddResource(string resourceName)
+    {
+        if (!resourceIcons.ContainsKey(resourceName))
+        {
+            CreateResourceIcon(resourceName);
+        }
+
+        // Обновляем количество ресурса
+        resourceIcons[resourceName].GetComponent<ResourceIcon>().IncreaseAmount(1);
+    }
+    
+    #endregion
 
     private void Update()
     {
@@ -58,5 +120,10 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
         }
     }
+}
+
+public class ResourceInventory
+{
+    public Dictionary<string, int> resources = new Dictionary<string, int>();
 }
 

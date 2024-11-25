@@ -11,6 +11,8 @@ public class ResourceObject : MonoBehaviour
     [SerializeField] protected GameObject harvestSound;
     [SerializeField] protected GameObject harvestEndSound;
     [SerializeField] protected LayerMask playerLayerMask;
+    [SerializeField] protected GameObject resourcePrefab;
+    [SerializeField] protected float spawnRadius;
     
     public virtual async void TakeDamage(){}
     

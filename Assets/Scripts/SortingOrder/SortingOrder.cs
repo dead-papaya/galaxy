@@ -14,6 +14,13 @@ public class SortingOrder : MonoBehaviour
 
     protected void Sort()
     {
-        _spriteRenderer.sortingOrder = (int)-(transform.position.y * 100f);
+        try
+        {
+            _spriteRenderer.sortingOrder = (int)-(transform.position.y * 100f);
+        }
+        catch (Exception e)
+        {
+            
+        }
     }
 }
