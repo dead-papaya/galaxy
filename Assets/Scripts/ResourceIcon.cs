@@ -35,6 +35,8 @@ public class ResourceIcon : MonoBehaviour
 
     public void IncreaseAmount(int amount)
     {
+        GameObject spawnedSound = Instantiate(UIManager.Instance.takeResourceSoundPrefab);
+        Destroy(spawnedSound, 0.5f);
         count += amount; // Увеличиваем количество
         UpdateAmountText(); // Обновляем текстовое поле
         ScaleTask();

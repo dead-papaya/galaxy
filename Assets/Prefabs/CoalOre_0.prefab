@@ -269,4 +269,6 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  resourcePrefab: {fileID: 4921076012212477959, guid: 1ce4482f66a908c44803be55b92359e1, type: 3}
+  spawnRadius: 0
   pickaxeSound: {fileID: 2058679062616742915, guid: 8beddf1901211f241aa03e19d8cda8b5, type: 3}

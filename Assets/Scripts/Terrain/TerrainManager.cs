@@ -33,6 +33,7 @@ public class TerrainManager : MonoBehaviour
 
     void GenerateTerrain()
     {
+        GameObject tilePrefab = new GameObject();
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -43,7 +44,7 @@ public class TerrainManager : MonoBehaviour
                 float sample = Mathf.PerlinNoise(xCoord + seed, yCoord + seed);
                 
                 // Генерация объектов (если нужно, для визуализации)
-                GameObject tilePrefab = new GameObject();
+                
                 Transform parent = parentStatic;
                 if (sample <= 0.2f) // Generate water
                 {
@@ -71,11 +72,28 @@ public class TerrainManager : MonoBehaviour
                     }
                     else
                     {
-                        if (Random.value <= 0.01f)
+                        float value = Random.value;
+                        if (value <= 0.01f) // Generate resource chuncks
                         {
-                            GameObject spawnedResource = Instantiate(resourcePrefabs[1], 
-                                new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
-                            spawnedResource.transform.parent = parentResource;
+                            if (value is <= 0.005f and > 0.003f)
+                            {
+                                GameObject spawnedResource = Instantiate(resourcePrefabs[1], 
+                                    new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                                spawnedResource.transform.parent = parentResource;
+                            }
+                            else if (value is <= 0.005f and > 0.001f)
+                            {
+                                GameObject spawnedResource = Instantiate(resourcePrefabs[2], 
+                                    new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                                spawnedResource.transform.parent = parentResource;
+                            }
+                            else
+                            {
+                                GameObject spawnedResource = Instantiate(resourcePrefabs[3], 
+                                    new Vector3(x/4f, y/4f, 0) - new Vector3(width/8f, height/8f), Quaternion.identity);
+                                spawnedResource.transform.parent = parentResource;
+                            }
+                            
                         }
                     }
 

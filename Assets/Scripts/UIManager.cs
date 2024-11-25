@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Canvas canvas;
     public RectTransform canvasTransform;
     //public Dictionary<string, RectTransform> ItemsTransforms;
+    public GameObject takeResourceSoundPrefab;
     public GameObject pauseMenu;
     public GameObject contextMenu;
     [SerializeField] private GameObject resourceIconPrefab;
