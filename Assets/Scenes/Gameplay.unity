@@ -2068,14 +2068,16 @@ MonoBehaviour:
   buildingLayer:
     serializedVersion: 2
     m_Bits: 39
-  buildAreaSize: 3
   buildingPrefabs:
+  - {fileID: 4479038932677766262, guid: f6c0be35301795348adbb86ee2f4da23, type: 3}
   - {fileID: 2026431068575537407, guid: c45534c70144fde478b74359438891fd, type: 3}
-  - {fileID: 2026431068575537407, guid: c4ef86ab36c7b544c8d178b62046e987, type: 3}
   buttonPrefab: {fileID: 8735619190626867541, guid: 052e5502f41dea54c9d991b4825891a8, type: 3}
   uiPanel: {fileID: 4468544653828946107}
   TestPoint: {fileID: 8580106069366445469, guid: c4b72d2ddfb27be488adfc72d76edc8d, type: 3}
   testP: []
+  currentBuildingBoxCollider: {fileID: 0}
+  sizeX: 0
+  sizeY: 0
 --- !u!1 &1011753828
 GameObject:
   m_ObjectHideFlags: 0

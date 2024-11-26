@@ -10,7 +10,7 @@ public class BuildingPlacer : MonoBehaviour
     [Header("Building Settings")]
     public LayerMask walkableLayer;
     public LayerMask buildingLayer; // Слой построенных зданий
-    public float buildAreaSize = 3f;
+    //public float buildAreaSize = 3f;
     public GameObject[] buildingPrefabs;
 
     [Header("UI Settings")]
@@ -26,6 +26,10 @@ public class BuildingPlacer : MonoBehaviour
 
     public GameObject TestPoint;
     public List<GameObject> testP;
+    public BoxCollider2D currentBuildingBoxCollider;
+    public float sizeX;
+    public float sizeY;
+
 
     private void Start()
     {
@@ -120,7 +124,7 @@ public class BuildingPlacer : MonoBehaviour
     private bool IsPlayerInArea(Vector3 position)
     {
         // Размер проверки соответствует зоне строительства
-        Vector2 size = new Vector2(buildAreaSize * gridGraph.nodeSize, buildAreaSize * gridGraph.nodeSize);
+        Vector2 size = new Vector2(currentBuildingBoxCollider.size.x, currentBuildingBoxCollider.size.y);
         Collider2D[] hits = Physics2D.OverlapBoxAll(position, size, 0);
 
         foreach (var hit in hits)
@@ -169,12 +173,12 @@ public class BuildingPlacer : MonoBehaviour
     private bool CanPlaceBuilding(Vector3 position)
     {
         DrawCubes(position);
-        int startX = Mathf.FloorToInt(((position.x - 0.5f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
-        int startY = Mathf.FloorToInt((position.y-0.5f - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
+        int startX = Mathf.FloorToInt(((position.x - sizeX*0.25f/2f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
+        int startY = Mathf.FloorToInt(((position.y-sizeY*0.25f/2f) - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
 
-        for (int x = startX; x <= startX + Mathf.FloorToInt(buildAreaSize); x++)
+        for (int x = startX; x < startX + Mathf.FloorToInt(sizeX); x++)
         {
-            for (int y = startY; y <= startY + Mathf.FloorToInt(buildAreaSize); y++)
+            for (int y = startY; y < startY + Mathf.FloorToInt(sizeY); y++)
             {
                 if (x < 0 || x >= gridGraph.width || y < 0 || y >= gridGraph.depth)
                     return false;
@@ -188,15 +192,15 @@ public class BuildingPlacer : MonoBehaviour
         return true;
     }
 
-    public void DrawCubes(Vector3 position)
+    private void DrawCubes(Vector3 position)
     {
         DeleteTestPoints();
-        int startX = Mathf.FloorToInt(((position.x - 0.5f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
-        int startY = Mathf.FloorToInt((position.y-0.5f - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
+        int startX = Mathf.FloorToInt(((position.x - sizeX*0.25f/2f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
+        int startY = Mathf.FloorToInt(((position.y - sizeY*0.25f/2f) - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
 
-        for (int x = startX; x <= startX + Mathf.FloorToInt(buildAreaSize); x++)
+        for (int x = startX; x < startX + Mathf.FloorToInt(sizeX); x++)
         {
-            for (int y = startY; y <= startY + Mathf.FloorToInt(buildAreaSize); y++)
+            for (int y = startY; y < startY + Mathf.FloorToInt(sizeY); y++)
             {
                 GridNodeBase nodeBase = gridGraph.GetNode(x, y);
                 
@@ -223,13 +227,14 @@ public class BuildingPlacer : MonoBehaviour
         spawnedBuilding.tag = "Building";
         buildingPrefab.GetComponent<SpriteRenderer>().color = Color.white;
         spawnedBuilding.GetComponent<SpriteRenderer>().color = Color.white;
+        
 
         int startX = Mathf.FloorToInt(position.x / gridGraph.nodeSize);
         int startY = Mathf.FloorToInt(position.y / gridGraph.nodeSize);
 
-        for (int x = startX; x < startX + Mathf.FloorToInt(buildAreaSize); x++)
+        for (int x = startX; x < startX + Mathf.FloorToInt(sizeX); x++)
         {
-            for (int y = startY; y < startY + Mathf.FloorToInt(buildAreaSize); y++)
+            for (int y = startY; y < startY + Mathf.FloorToInt(sizeY); y++)
             {
                 if (x < 0 || x >= gridGraph.width || y < 0 || y >= gridGraph.depth)
                     continue;
@@ -259,7 +264,9 @@ public class BuildingPlacer : MonoBehaviour
 
         currentBuilding = Instantiate(buildingPrefab);
         currentBuildingRenderer = currentBuilding.GetComponent<SpriteRenderer>();
-
+        currentBuildingBoxCollider = currentBuilding.GetComponent<BoxCollider2D>();
+        sizeX = currentBuildingBoxCollider.size.x / gridGraph.nodeSize;
+        sizeY = currentBuildingBoxCollider.size.y / gridGraph.nodeSize;
     }
 
     public void CancelBuilding()
