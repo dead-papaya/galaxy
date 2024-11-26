@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
 using TMPro;
+using Unity.VisualScripting;
 
 public class BuildingPlacer : MonoBehaviour
 {
@@ -93,7 +95,14 @@ public class BuildingPlacer : MonoBehaviour
 
             if (CanPlaceBuilding(currentBuilding.transform.position))
             {
-                PlaceBuilding(currentBuilding, currentBuilding.transform.position);
+                if (CanBuy(currentBuilding))
+                {
+                    PlaceBuilding(currentBuilding, currentBuilding.transform.position);
+                }
+                else
+                {
+                    Debug.Log("Not enough resorces");
+                }
             }
             else
             {
@@ -263,5 +272,61 @@ public class BuildingPlacer : MonoBehaviour
         gameObject.SetActive(true);
         Time.timeScale = 1f;
         GameEvents.BuildingMenuOpen();
+    }
+
+    public bool CanBuy(GameObject buildingPrefab)
+    {
+        BuildingData data = buildingPrefab.GetComponent<BuildingData>();
+        List<string> keyList = data.GetKeyList();
+        bool canBuy = false;
+        foreach (var key in keyList)
+        {
+            ResourceIcon resourceIcon = UIManager.Instance.GetResourceIconByName(key);
+            if (resourceIcon != null)
+            {
+                int pr = 0;
+                if (data.GetValue(key) > 0)
+                {
+                    pr = data.GetValue(key);
+                    if (resourceIcon.GetCount() < pr)
+                    {
+                        canBuy = false;
+                    }
+                    else
+                    {
+                        canBuy = true;
+                    }
+                }
+            }
+        }
+        if (canBuy)
+        {
+            foreach (var key in keyList)
+            {
+                ResourceIcon resourceIcon = UIManager.Instance.GetResourceIconByName(key);
+                if (resourceIcon != null)
+                {
+                    int pr = 0;
+                    if (data.GetValue(key) > 0)
+                    {
+                        pr = data.GetValue(key);
+                        if (resourceIcon.GetCount() < pr)
+                        {
+                            Debug.LogError("Ошибка в цикле for в BuildingPlacer.CanBuy()");
+                            return false;
+                        }
+                        else
+                        {
+                            resourceIcon.IncreaseAmount(-pr);
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
+        
     }
 }

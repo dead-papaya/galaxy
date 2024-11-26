@@ -82,6 +82,17 @@ public class UIManager : MonoBehaviour
         // Возвращаем RectTransform иконки ресурса
         return resourceIcons[resourceName].GetComponent<RectTransform>();
     }
+    
+    public ResourceIcon GetResourceIconByName(string resourceName)
+    {
+        if (!resourceIcons.ContainsKey(resourceName))
+        {
+            CreateResourceIcon(resourceName);
+        }
+
+        // Возвращаем RectTransform иконки ресурса
+        return resourceIcons[resourceName].GetComponent<ResourceIcon>();
+    }
 
     public void AddResource(string resourceName)
     {

@@ -33,6 +33,11 @@ public class ResourceIcon : MonoBehaviour
         }
     }
 
+    public int GetCount()
+    {
+        return count;
+    }
+
     public void IncreaseAmount(int amount)
     {
         GameObject spawnedSound = Instantiate(UIManager.Instance.takeResourceSoundPrefab);
