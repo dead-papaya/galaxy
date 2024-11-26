@@ -264,6 +264,7 @@ public class BuildingPlacer : MonoBehaviour
 
     public void CancelBuilding()
     {
+        DeleteTestPoints();
         if (currentBuilding != null)
         {
             if (currentBuildingRenderer != null)
@@ -272,6 +273,7 @@ public class BuildingPlacer : MonoBehaviour
             Destroy(currentBuilding);
             currentBuilding = null;
         }
+        
     }
 
     private void RemoveBuilding(GameObject building)
