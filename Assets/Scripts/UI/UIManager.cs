@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     private Dictionary<string, ResourceIcon> resourceIcons = new();
 
     [Header("Windows")] 
-    [SerializeField] private GameObject buildingMenu;
+    public BuildingPlacer buildingMenu;
     
     [Header("Debug")]
     public TextMeshProUGUI commandText;
@@ -105,7 +105,14 @@ public class UIManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            buildingMenu.SetActive(!buildingMenu.activeSelf);
+            if (buildingMenu.gameObject.activeSelf)
+            {
+                buildingMenu.CloseBuildingMenu();
+            }
+            else
+            {
+                buildingMenu.OpenBuildingMenu();
+            }
         }
     }
 

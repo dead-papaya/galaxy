@@ -111,12 +111,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 530cc6440d4ac5b43a4de6c523142fa5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca99429c443c03f4db6efc332b4ca48f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.18945312, y: 0.28515625}
+  m_Size: {x: 1, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -170,8 +170,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 0.18945312, y: 0.28515625}
+    oldSize: {x: 1, y: 1.3333334}
+    newSize: {x: 1, y: 1.3333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -215,8 +215,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 0.18945312, y: 0.28515625}
+    oldSize: {x: 1, y: 1.3333334}
+    newSize: {x: 1, y: 1.3333334}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -270,5 +270,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   resourcePrefab: {fileID: 4921076012212477959, guid: 1ce4482f66a908c44803be55b92359e1, type: 3}
-  spawnRadius: 0
+  spawnRadius: 1.5
   pickaxeSound: {fileID: 2058679062616742915, guid: 8beddf1901211f241aa03e19d8cda8b5, type: 3}

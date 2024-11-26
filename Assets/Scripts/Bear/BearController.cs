@@ -11,11 +11,18 @@ public class BearController : MonoBehaviour
     public Command currentCommand = null;
 
     public BearAnimations bearAnimations;
+    
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    public Material outlineMaterial; // Установите материал с шейдером OutlineShader
 
 
     private void Awake()
     {
         bearAnimations = GetComponent<BearAnimations>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
+
     }
 
     private void Start()
@@ -40,15 +47,16 @@ public class BearController : MonoBehaviour
         Debug.Log($"{gameObject.name} selected.");
         
         UIManager.Instance.contextMenu.SetActive(false);
-        //UIManager.Instance.currentStateTMPro.text = currentState.GetType().ToString();
-        // Добавьте визуальные эффекты или выделение
+        if (outlineMaterial != null)
+        {
+            spriteRenderer.material = outlineMaterial;
+        }
     }
 
     public void Deselect()
     {
         Debug.Log($"{gameObject.name} deselected.");
-        
-        // Уберите визуальные эффекты
+        spriteRenderer.material = originalMaterial;
     }
 
     private void Update()

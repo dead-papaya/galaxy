@@ -15,6 +15,16 @@ public class ContextMenu : MonoBehaviour
     public GameObject menuPanel; // Панель контекстного меню
     public Button buttonPrefab;  // Префаб кнопки
 
+    private void OnEnable()
+    {
+        GameEvents.OnBuildingMenuOpen += CloseMenu;
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.OnBuildingMenuOpen -= CloseMenu;
+    }
+
     private void GenerateMenu(Vector3 position, List<Command> commands)
     {
         // Очищаем старые кнопки
@@ -67,6 +77,8 @@ public class ContextMenu : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1)) // ПКМ
             {
+                if(GameManager.Instance.isBuilding()) return;
+                
                 Vector3 mousePosition = Input.mousePosition;
 
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
@@ -90,6 +102,7 @@ public class ContextMenu : MonoBehaviour
             }
         }
     }
+    
     
     /// <summary>
     /// Ограничивает позицию меню в пределах экрана и размещает справа снизу от мыши.

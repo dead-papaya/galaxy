@@ -270,5 +270,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   resourcePrefab: {fileID: 4921076012212477959, guid: e905ce86b4574dc46a5e20643072aa56, type: 3}
-  spawnRadius: 0
+  spawnRadius: 1.5
   pickaxeSound: {fileID: 2058679062616742915, guid: 8beddf1901211f241aa03e19d8cda8b5, type: 3}
