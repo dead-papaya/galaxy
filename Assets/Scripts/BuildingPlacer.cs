@@ -56,9 +56,10 @@ public class BuildingPlacer : MonoBehaviour
         // int gridX = Mathf.FloorToInt(worldPosition.x / gridGraph.nodeSize);
         // int gridY = Mathf.FloorToInt(worldPosition.y / gridGraph.nodeSize);
         //return new Vector3(gridX * gridGraph.nodeSize, gridY * gridGraph.nodeSize, 0);
-        int gridX = Mathf.FloorToInt(worldPosition.x / 1.25f);
-        int gridY = Mathf.FloorToInt(worldPosition.y / 1.25f);
-        return new Vector3(gridX * 1.25f, gridY * 1.25f, 0);
+        float buildingGridSize = 0.5f;
+        int gridX = Mathf.FloorToInt(worldPosition.x / buildingGridSize);
+        int gridY = Mathf.FloorToInt(worldPosition.y / buildingGridSize);
+        return new Vector3(gridX * buildingGridSize, gridY * buildingGridSize, 0);
         
     }
 
