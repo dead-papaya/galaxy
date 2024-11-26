@@ -314,6 +314,8 @@ public class BuildingPlacer : MonoBehaviour
             {
                 StartBuilding(prefab);
             });
+
+            button.transform.GetComponent<TooltipController>().GenerateTips(prefab.GetComponent<BuildingData>());
         }
     }
 
