@@ -119,24 +119,6 @@ public class BuildingPlacer : MonoBehaviour
         return false;
     }
 
-    // private void HandleBuildingPlacement()
-    // {
-    //     if (currentBuilding == null) return;
-    //
-
-    //     if (Input.GetMouseButtonDown(0)) // ЛКМ
-    //     {
-    //         if (CanPlaceBuilding(currentBuilding.transform.position))
-    //         {
-    //             PlaceBuilding(currentBuilding, currentBuilding.transform.position);
-    //         }
-    //         else
-    //         {
-    //             Debug.Log("Невозможно разместить здание, место занято.");
-    //         }
-    //     }
-    // }
-
     private void HandleBuildingDeselection()
     {
         if (Input.GetMouseButtonDown(1)) // ПКМ
@@ -194,6 +176,8 @@ public class BuildingPlacer : MonoBehaviour
     {
         GameObject spawnedBuilding = Instantiate(buildingPrefab, position, Quaternion.identity);
         spawnedBuilding.tag = "Building";
+        buildingPrefab.GetComponent<SpriteRenderer>().color = Color.white;
+        spawnedBuilding.GetComponent<SpriteRenderer>().color = Color.white;
 
         int startX = Mathf.FloorToInt(position.x / gridGraph.nodeSize);
         int startY = Mathf.FloorToInt(position.y / gridGraph.nodeSize);
@@ -258,7 +242,7 @@ public class BuildingPlacer : MonoBehaviour
         foreach (var prefab in buildingPrefabs)
         {
             GameObject button = Instantiate(buttonPrefab, uiPanel);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = prefab.name;
+            button.transform.GetChild(0).GetComponent<Image>().sprite = prefab.GetComponent<SpriteRenderer>().sprite;
 
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
