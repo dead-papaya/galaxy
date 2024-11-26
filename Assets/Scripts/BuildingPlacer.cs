@@ -24,8 +24,12 @@ public class BuildingPlacer : MonoBehaviour
     private Color originalColor;
     private SpriteRenderer currentBuildingRenderer;
 
+    public GameObject TestPoint;
+    public List<GameObject> testP;
+
     private void Start()
     {
+        testP = new List<GameObject>();
         gridGraph = AstarPath.active.data.gridGraph;
         GenerateBuildingButtons();
     }
@@ -49,9 +53,13 @@ public class BuildingPlacer : MonoBehaviour
 
     private Vector3 GetSnapToGridPosition(Vector3 worldPosition)
     {
-        int gridX = Mathf.FloorToInt(worldPosition.x / gridGraph.nodeSize);
-        int gridY = Mathf.FloorToInt(worldPosition.y / gridGraph.nodeSize);
-        return new Vector3(gridX * gridGraph.nodeSize, gridY * gridGraph.nodeSize, 0);
+        // int gridX = Mathf.FloorToInt(worldPosition.x / gridGraph.nodeSize);
+        // int gridY = Mathf.FloorToInt(worldPosition.y / gridGraph.nodeSize);
+        //return new Vector3(gridX * gridGraph.nodeSize, gridY * gridGraph.nodeSize, 0);
+        int gridX = Mathf.FloorToInt(worldPosition.x / 1.25f);
+        int gridY = Mathf.FloorToInt(worldPosition.y / 1.25f);
+        return new Vector3(gridX * 1.25f, gridY * 1.25f, 0);
+        
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -75,7 +83,6 @@ public class BuildingPlacer : MonoBehaviour
         }
         else
         {
-        
             if (currentBuildingRenderer != null)
             {
                 originalColor = currentBuildingRenderer.color;
@@ -85,8 +92,6 @@ public class BuildingPlacer : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0)) // ЛКМ
         {
-
-            
             if (IsPlayerInArea(currentBuilding.transform.position))
             {
                 Debug.Log("Невозможно разместить здание, объект игрока находится в зоне строительства.");
@@ -162,16 +167,17 @@ public class BuildingPlacer : MonoBehaviour
 
     private bool CanPlaceBuilding(Vector3 position)
     {
-        int startX = Mathf.FloorToInt((position.x - gridGraph.center.x) / gridGraph.nodeSize) + gridGraph.width / 2;
-        int startY = Mathf.FloorToInt((position.y - gridGraph.center.y) / gridGraph.nodeSize) + gridGraph.depth / 2;
+        DrawCubes(position);
+        int startX = Mathf.FloorToInt(((position.x - 0.5f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
+        int startY = Mathf.FloorToInt((position.y-0.5f - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
 
-        for (int x = startX; x < startX + Mathf.FloorToInt(buildAreaSize); x++)
+        for (int x = startX; x <= startX + Mathf.FloorToInt(buildAreaSize); x++)
         {
-            for (int y = startY; y < startY + Mathf.FloorToInt(buildAreaSize); y++)
+            for (int y = startY; y <= startY + Mathf.FloorToInt(buildAreaSize); y++)
             {
                 if (x < 0 || x >= gridGraph.width || y < 0 || y >= gridGraph.depth)
                     return false;
-
+                
                 GridNodeBase nodeBase = gridGraph.GetNode(x, y);
                 if (nodeBase == null || !nodeBase.Walkable)
                     return false;
@@ -179,6 +185,35 @@ public class BuildingPlacer : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void DrawCubes(Vector3 position)
+    {
+        DeleteTestPoints();
+        int startX = Mathf.FloorToInt(((position.x - 0.5f) - gridGraph.center.x) / gridGraph.nodeSize) + (gridGraph.width / 2);
+        int startY = Mathf.FloorToInt((position.y-0.5f - gridGraph.center.y) / gridGraph.nodeSize) + (gridGraph.depth / 2);
+
+        for (int x = startX; x <= startX + Mathf.FloorToInt(buildAreaSize); x++)
+        {
+            for (int y = startY; y <= startY + Mathf.FloorToInt(buildAreaSize); y++)
+            {
+                GridNodeBase nodeBase = gridGraph.GetNode(x, y);
+                
+                GameObject t = Instantiate(TestPoint, (Vector3)nodeBase.position, Quaternion.identity);
+                testP.Add(t);
+
+                if (x < 0 || x >= gridGraph.width || y < 0 || y >= gridGraph.depth)
+                {
+                    t.GetComponent<SpriteRenderer>().color = Color.red;
+                    continue;
+                }
+                
+                if (nodeBase == null || !nodeBase.Walkable)
+                {
+                    t.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+            }
+        }
     }
 
     private void PlaceBuilding(GameObject buildingPrefab, Vector3 position)
@@ -206,6 +241,7 @@ public class BuildingPlacer : MonoBehaviour
                 }
             }
         }
+        DeleteTestPoints();
 
         AstarPath.active.Scan();
 
@@ -244,6 +280,17 @@ public class BuildingPlacer : MonoBehaviour
             Destroy(building);
             Debug.Log($"Здание {building.name} удалено.");
         }
+    }
+
+    private void DeleteTestPoints()
+    {
+        List<GameObject> d = new List<GameObject>(testP);
+        foreach (var da in d)
+        {
+            
+            Destroy(da.gameObject);
+        }
+        testP.Clear();
     }
 
     private void GenerateBuildingButtons()
@@ -325,7 +372,6 @@ public class BuildingPlacer : MonoBehaviour
 
             return true;
         }
-
         return false;
         
     }
