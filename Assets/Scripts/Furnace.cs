@@ -139,7 +139,7 @@ public class Furnace : Building
         UIManager.Instance.furnaceWindow.UpdateWindow();
     }
 
-    private void GetFuelBack()
+    public void GetFuelBack()
     {
         for (int i = 0; i < currentFuel.Count; i++)
         {
@@ -166,7 +166,7 @@ public class Furnace : Building
         UIManager.Instance.furnaceWindow.UpdateWindow();
     }
     
-    private void GetMaterialBack()
+    public void GetMaterialBack()
     {
         for (int i = 0; i < currentMaterial.Count; i++)
         {

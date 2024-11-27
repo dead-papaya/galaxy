@@ -102,6 +102,26 @@ public class FurnaceWindow : MonoBehaviour
 
     public void GenerateIcons(List<string> iconKeys, string typeWindow, Vector3 pos)
     {
+        if (typeWindow == "Material")
+        {
+            if (UIManager.Instance.furnaceWindow.furnace.currentMaterial.Count > 0)
+            {
+                UIManager.Instance.furnaceWindow.furnace.GetMaterialBack();
+                UIManager.Instance.furnaceWindow.chooseMaterialWindow.SetActive(false);
+                UpdateWindow();
+                return;
+            }
+        }
+        else
+        {
+            if (UIManager.Instance.furnaceWindow.furnace.currentFuel.Count > 0)
+            {
+                UIManager.Instance.furnaceWindow.furnace.GetFuelBack();
+                UIManager.Instance.furnaceWindow.chooseMaterialWindow.SetActive(false);
+                UpdateWindow();
+                return;
+            }
+        }
         DestroyChooseMaterialChilds();
         chooseMaterialWindow.SetActive(true);
         List<ResourceIcon> icons = UIManager.Instance.GetResourceIconList();

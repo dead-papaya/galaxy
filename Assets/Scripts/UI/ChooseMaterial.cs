@@ -60,6 +60,27 @@ public class ChooseMaterial : MonoBehaviour
 
     private void OnClickMaterial()
     {
+        switch (type)
+        {
+            case "Fuel":
+                if (UIManager.Instance.furnaceWindow.furnace.currentFuel.Count > 0)
+                {
+                    UIManager.Instance.furnaceWindow.furnace.GetFuelBack();
+                    UIManager.Instance.furnaceWindow.chooseMaterialWindow.SetActive(false);
+                    return;
+                }
+                break;
+            
+            case "Material":
+                if (UIManager.Instance.furnaceWindow.furnace.currentMaterial.Count > 0)
+                {
+                    UIManager.Instance.furnaceWindow.furnace.GetMaterialBack();
+                    UIManager.Instance.furnaceWindow.chooseMaterialWindow.SetActive(false);
+                    return;
+                }
+                break;
+        }
+        
         ChooseMaterial[] mats = GameObject.FindObjectsByType<ChooseMaterial>(FindObjectsSortMode.None);
         foreach (var mat in mats)
         {
