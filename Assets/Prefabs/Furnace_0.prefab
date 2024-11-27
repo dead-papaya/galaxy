@@ -181,3 +181,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76d278434583e1468863715ebadbdd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlased: 0
+  currentFuel: []
+  currentMaterial: []
+  currentExit: []
+  isWorking: 0
+  currentFuelHealth: 0
+  currentFuseCompletion: 0
+  spriteRenderer: {fileID: 0}
+  outlineMaterial: {fileID: 2100000, guid: ef9fb8307cccbf84c8cb294f4d639ee1, type: 2}

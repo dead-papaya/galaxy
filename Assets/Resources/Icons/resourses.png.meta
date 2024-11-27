@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4a1e9ce3d7d858459d64b1ee40d45c3
+guid: 847fa2af17024ee438e9731ccf7093bc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stone_0
+      name: resourses_0
       rect:
         serializedVersion: 2
         x: 0
@@ -157,20 +157,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27c05b3384ef63d4aafab10f9432eff9
-      internalID: -1707100871
+      spriteID: 1765ce2b587c3a24abe906b4907fffbb
+      internalID: -1359455117
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ironore_0
+      name: resourses_1
       rect:
         serializedVersion: 2
         x: 16
@@ -178,20 +178,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f98e693badfa57840b23faba50f4a39e
-      internalID: 1559745860
+      spriteID: 82df16ee22295834fb1febfa2d30cc86
+      internalID: -301217365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coal_0
+      name: resourses_2
       rect:
         serializedVersion: 2
         x: 32
@@ -199,20 +199,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 942fb4e3c03ff0046aa2444059a923c3
-      internalID: -241317134
+      spriteID: b08a886bdd81ce046824ae2e574cc3d3
+      internalID: 341626953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ironingot_0
+      name: resourses_3
       rect:
         serializedVersion: 2
         x: 48
@@ -220,20 +220,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aec0a87c2174de34fb2279371b6382ae
-      internalID: 1879855730
+      spriteID: 89289825843dcca418fcf82811eed5e0
+      internalID: -1014635156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: log_0
+      name: resourses_4
       rect:
         serializedVersion: 2
         x: 64
@@ -241,14 +241,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fab9991cb333934ab8dd3ddf9e05231
-      internalID: -258385911
+      spriteID: cdb87e7a3f64490498f492fd04e11e21
+      internalID: 1767549394
       vertices: []
       indices: 
       edges: []
@@ -264,11 +264,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      coal_0: -241317134
-      ironingot_0: 1879855730
-      ironore_0: 1559745860
-      log_0: -258385911
-      stone_0: -1707100871
+      resourses_0: -1359455117
+      resourses_1: -301217365
+      resourses_2: 341626953
+      resourses_3: -1014635156
+      resourses_4: 1767549394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

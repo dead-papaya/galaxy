@@ -16,11 +16,34 @@ public class Furnace : Building
     public float currentFuelHealth;
     public float currentFuseCompletion = 0;
     public SpriteRenderer spriteRenderer;
+    
+    public Material outlineMaterial;
+    private Material originalMaterial;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        originalMaterial = spriteRenderer.material;
     }
+    
+    public void Select()
+    {
+        Debug.Log($"{gameObject.name} selected.");
+        
+        UIManager.Instance.contextMenu.SetActive(false);
+        
+        if (outlineMaterial != null)
+        {
+            spriteRenderer.material = outlineMaterial;
+        }
+    }
+
+    public void Deselect()
+    {
+        Debug.Log($"{gameObject.name} deselected.");
+        spriteRenderer.material = originalMaterial;
+    }
+
 
     public void CheckIfCanWork()
     {
@@ -88,6 +111,8 @@ public class Furnace : Building
     {
         if (isPlased)
         {
+            UIManager.Instance.furnaceWindow.CloseFurnaceWindow();       
+            Select();
             OpenMenu();
         }
     }

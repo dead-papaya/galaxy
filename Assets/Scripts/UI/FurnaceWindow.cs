@@ -34,11 +34,11 @@ public class FurnaceWindow : MonoBehaviour
     {
         chooseFuelButton.onClick.AddListener(delegate
         {
-            GenerateIcons(GameManager.Instance.fuels, "Fuel");
+            GenerateIcons(GameManager.Instance.fuels, "Fuel", chooseFuelIcon.transform.position);
         });
         chooseMaterialButton.onClick.AddListener(delegate
         {
-            GenerateIcons(GameManager.Instance.canBeFused, "Material");
+            GenerateIcons(GameManager.Instance.canBeFused, "Material", chooseMaterialButton.transform.position);
         });
         
         UpdateWindow();
@@ -100,14 +100,14 @@ public class FurnaceWindow : MonoBehaviour
         }
     }
 
-    public void GenerateIcons(List<string> iconKeys, string typeWindow)
+    public void GenerateIcons(List<string> iconKeys, string typeWindow, Vector3 pos)
     {
         DestroyChooseMaterialChilds();
         chooseMaterialWindow.SetActive(true);
         List<ResourceIcon> icons = UIManager.Instance.GetResourceIconList();
         foreach (var resourceIcon in icons)
         {
-            if (iconKeys.Contains(resourceIcon.name))
+            if (iconKeys.Contains(resourceIcon.name) && resourceIcon.GetCount() > 0)
             {
                 GameObject spawnedRes = Instantiate(chooseMaterialPrefab, chooseMaterialWindow.transform);
                 ChooseMaterial spawnedResM = spawnedRes.GetComponent<ChooseMaterial>();
@@ -116,9 +116,9 @@ public class FurnaceWindow : MonoBehaviour
                 spawnedResM.type = typeWindow;
             }
         }
+
+        chooseMaterialWindow.transform.position = pos;
     }
-
-
     
     private void DestroyChooseMaterialChilds()
     {
@@ -138,7 +138,13 @@ public class FurnaceWindow : MonoBehaviour
     public void CloseFurnaceWindow()
     {
         DestroyChooseMaterialChilds();
+        Furnace[] furs = GameObject.FindObjectsByType<Furnace>(FindObjectsSortMode.None);
+        foreach (var fur in furs)
+        {
+            fur.Deselect();
+        }  
         gameObject.SetActive(false);
         chooseMaterialWindow.SetActive(false);
+        
     }
 }

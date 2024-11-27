@@ -37,15 +37,21 @@ public class BearController : MonoBehaviour
         currentState.Enter();
     }
     
+    
+    
     public BearState GetState()
     {
         return currentState;
-    }
+    }   
 
     public void Select()
     {
         Debug.Log($"{gameObject.name} selected.");
-        
+        Furnace[] furs = GameObject.FindObjectsByType<Furnace>(FindObjectsSortMode.None);
+        foreach (var fur in furs)
+        {
+            fur.Deselect();
+        }  
         UIManager.Instance.contextMenu.SetActive(false);
         if (outlineMaterial != null)
         {
