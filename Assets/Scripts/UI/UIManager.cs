@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
 
     [Header("Windows")] 
     public BuildingPlacer buildingMenu;
+
+    public FurnaceWindow furnaceWindow;
     
     [Header("Debug")]
     public TextMeshProUGUI commandText;
@@ -147,6 +149,18 @@ public class UIManager : MonoBehaviour
             pauseMenu.SetActive(true);
         }
     }
+    
+    public List<ResourceIcon> GetResourceIconList()
+    {
+        List<ResourceIcon> keys = new List<ResourceIcon>(); 
+        foreach (var pri in resourceIcons)
+        {
+            keys.Add(GetResourceIconByName(pri.Key));
+        }
+
+        return keys;
+    }
+    
 }
 
 public class ResourceInventory

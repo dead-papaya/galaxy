@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1780773653532658847}
   - component: {fileID: 8760715076552651191}
   m_Layer: 0
-  m_Name: Coal_Item
+  m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -241317134, guid: b4a1e9ce3d7d858459d64b1ee40d45c3, type: 3}
+  m_Sprite: {fileID: -258385911, guid: b4a1e9ce3d7d858459d64b1ee40d45c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -171,6 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55e35d9597c27144aa31e8060b3f14ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Coal
+  name: Wood
   moveDuration: 0.8
   moveEase: 25

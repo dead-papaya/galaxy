@@ -13,6 +13,10 @@ public class ResourceIcon : MonoBehaviour
 
     private Tween scaleTween;
 
+    public GameObject currentResourceGO;
+
+    public float fireHealth = -1f;
+
     /// <summary>
     /// Инициализация иконки ресурса.
     /// </summary>
@@ -30,6 +34,27 @@ public class ResourceIcon : MonoBehaviour
         else
         {
             Debug.LogWarning($"Иконка для ресурса '{name}' не найдена.");
+        }
+        
+        // Установим префаб ресурса по имени
+        GameObject resourcePrefab = Resources.Load<GameObject>($"Resources/{name}");
+        if (resourcePrefab != null)
+        {
+            currentResourceGO = resourcePrefab;
+        }
+        else
+        {
+            Debug.LogWarning($"Префаб для ресурса '{name}' не найден.");
+        }
+
+        switch (name)
+        {
+            case "Wood":
+                fireHealth = 20f;
+                break;
+            case "Coal":
+                fireHealth = 90f;
+                break;
         }
     }
 

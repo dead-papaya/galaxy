@@ -132,7 +132,7 @@ public class BuildingPlacer : MonoBehaviour
     private bool IsPlayerInArea(Vector3 position)
     {
         // Размер проверки соответствует зоне строительства
-        Vector2 size = new Vector2(currentBuildingBoxCollider.size.x, currentBuildingBoxCollider.size.y);
+            Vector2 size = new Vector2(currentBuildingBoxCollider.size.x, currentBuildingBoxCollider.size.y);
         Collider2D[] hits = Physics2D.OverlapBoxAll(position, size, 0);
 
         foreach (var hit in hits)
@@ -242,6 +242,7 @@ public class BuildingPlacer : MonoBehaviour
     {
         GameObject spawnedBuilding = Instantiate(buildingPrefab, position, Quaternion.identity);
         spawnedBuilding.tag = "Building";
+        spawnedBuilding.GetComponent<Building>().isPlased = true;
         buildingPrefab.GetComponent<SpriteRenderer>().color = Color.white;
         spawnedBuilding.GetComponent<SpriteRenderer>().color = Color.white;
         
@@ -265,6 +266,7 @@ public class BuildingPlacer : MonoBehaviour
             }
         }
         DeleteTestPoints();
+        
 
         AstarPath.active.Scan();
 
@@ -280,6 +282,7 @@ public class BuildingPlacer : MonoBehaviour
         }
 
         currentBuilding = Instantiate(buildingPrefab);
+        currentBuilding.GetComponent<Building>().isPlased = false;
         currentBuildingRenderer = currentBuilding.GetComponent<SpriteRenderer>();
         currentBuildingBoxCollider = currentBuilding.GetComponent<BoxCollider2D>();
         sizeX = currentBuildingBoxCollider.size.x / gridGraph.nodeSize;
