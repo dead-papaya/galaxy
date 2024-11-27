@@ -2028,7 +2028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &922128407
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2078,6 +2078,7 @@ MonoBehaviour:
   currentBuildingBoxCollider: {fileID: 0}
   sizeX: 0
   sizeY: 0
+  CannottBuildTip_Prefab: {fileID: 2368364961175566957, guid: 276c0bc11a3e52348889e605a05fe7ff, type: 3}
 --- !u!1 &1011753828
 GameObject:
   m_ObjectHideFlags: 0

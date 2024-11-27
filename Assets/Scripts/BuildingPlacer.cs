@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
+using Pathfinding.Util;
 using TMPro;
 using Unity.VisualScripting;
 
@@ -29,6 +30,9 @@ public class BuildingPlacer : MonoBehaviour
     public BoxCollider2D currentBuildingBoxCollider;
     public float sizeX;
     public float sizeY;
+    
+    public GameObject CannottBuildTip_Prefab;
+
 
 
     private void Start()
@@ -99,6 +103,7 @@ public class BuildingPlacer : MonoBehaviour
         {
             if (IsPlayerInArea(currentBuilding.transform.position))
             {
+                DrawTip("Слишком близко к игроку или другоу зданию!");
                 Debug.Log("Невозможно разместить здание, объект игрока находится в зоне строительства.");
                 return;
             }
@@ -111,11 +116,14 @@ public class BuildingPlacer : MonoBehaviour
                 }
                 else
                 {
+                    DrawTip("Недостаточно ресурсов");
+
                     Debug.Log("Not enough resorces");
                 }
             }
             else
             {
+                DrawTip("Невозможно разместить здание, место занято.");
                 Debug.Log("Невозможно разместить здание, место занято.");
             }
         }
@@ -138,6 +146,15 @@ public class BuildingPlacer : MonoBehaviour
         return false;
     }
 
+    private void DrawTip(string textTip)
+    {
+        GameObject spawnedTip = Instantiate(CannottBuildTip_Prefab, transform);
+        spawnedTip.GetComponent<RectTransform>().position =
+            Camera.main.WorldToScreenPoint(currentBuilding.transform.position + new Vector3(0f, 0.5f, 0f));
+        spawnedTip.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = textTip; // Невозможно разместить здание, место занято.
+        spawnedTip.GetComponent<TipController>().StartMove();
+    }
+    
     private void HandleBuildingDeselection()
     {
         if (Input.GetMouseButtonDown(1)) // ПКМ
