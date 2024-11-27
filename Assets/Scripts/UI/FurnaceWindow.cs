@@ -57,6 +57,7 @@ public class FurnaceWindow : MonoBehaviour
 
     public void UpdateWindow()
     {
+        furnaceIcon.sprite = furnace.spriteRenderer.sprite;
         if (furnace.isWorking)
         {
             fillRect_Progress.fillAmount = furnace.currentFuseCompletion / 3f;

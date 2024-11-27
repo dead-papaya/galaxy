@@ -15,6 +15,12 @@ public class Furnace : Building
 
     public float currentFuelHealth;
     public float currentFuseCompletion = 0;
+    public SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public void CheckIfCanWork()
     {
