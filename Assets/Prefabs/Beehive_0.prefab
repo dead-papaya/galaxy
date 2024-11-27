@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4870388472391632922}
   - component: {fileID: 6619310489412982461}
   - component: {fileID: 3517896629589771520}
+  - component: {fileID: 817521636928672610}
   m_Layer: 8
   m_Name: Beehive_0
   m_TagString: Untagged
@@ -233,3 +234,16 @@ MonoBehaviour:
     count: 10
   - name: Stone
     count: 5
+--- !u!114 &817521636928672610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4479038932677766262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6677caccea14564cbf42ec1d3154439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlased: 0

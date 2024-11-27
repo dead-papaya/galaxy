@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7950227890736536177}
   - component: {fileID: 5823479787129141928}
   - component: {fileID: -8937549407373475459}
+  - component: {fileID: -2563468597275423648}
   m_Layer: 8
   m_Name: beehives_0
   m_TagString: Untagged
@@ -146,3 +147,16 @@ MonoBehaviour:
   price:
   - name: Wood
     count: 5
+--- !u!114 &-2563468597275423648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026431068575537407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6677caccea14564cbf42ec1d3154439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlased: 0

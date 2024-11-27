@@ -62,6 +62,7 @@ public class Furnace : Building
         isWorking = true;
         currentFuelHealth = currentFuel[0].fireHealth;
         GetComponent<Animator>().SetBool("isWorking", true);
+        transform.GetChild(0).gameObject.SetActive(true);
         if(currentFuelHealth < 0) StopWork();
     }
     
@@ -69,6 +70,8 @@ public class Furnace : Building
     {
         isWorking = false;
         GetComponent<Animator>().SetBool("isWorking", false);
+        transform.GetChild(0).gameObject.SetActive(false);
+
     }
 
 
